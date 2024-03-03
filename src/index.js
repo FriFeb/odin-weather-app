@@ -61,3 +61,27 @@ async function getRequiredData(location) {
     console.log(err);
   }
 }
+
+const form = document.querySelector('form');
+
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  getRequiredData(form.elements['location'].value).then((data) => {
+    console.log(data);
+  });
+});
+
+/* 
+TODO: 
+  Backend:
+    - chunk code into modules
+    - handle 'no city found' errors
+    - refactor code
+
+  Frontend:
+    - show required data on the page
+      - brainstorm what I need to show
+      - create elements to store the data
+      - add styling
+
+*/
