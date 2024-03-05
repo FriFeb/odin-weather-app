@@ -21,6 +21,7 @@ TODO:
       + day - condition, temp, humidity, uv
       + hours - temp, humidity, cloud (as 3 different tabs)
     - create a template to show the data
+      + create a basic design in figma
       - write html
       - add styling
     - append the weather data to the template dynamically
