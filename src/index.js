@@ -1,15 +1,5 @@
-import { getRequiredWeather } from './backend/weather_handler';
 import './style.css';
-
-const form = document.querySelector('form');
-
-form.addEventListener('submit', async (event) => {
-  event.preventDefault();
-
-  const weather = await getRequiredWeather(form.elements['location'].value);
-
-  console.log(weather);
-});
+import './frontend/search_form';
 
 /* 
 TODO: 
@@ -31,15 +21,15 @@ TODO:
       + write html
       + add styling
 
-    - append the weather data to the template dynamically
+    + append the weather data to the template dynamically
 
-    - add ability to switch between temp modes
+    - add the ability to switch between temp modes
 
     - add info to hours graph 
       - brainstorm how to show the data
       - ...
 
-    - add ability to toggle between hour graphs
+    - add the ability to toggle between hour graphs
 
     - add advanced styling
       - location input 
@@ -47,4 +37,5 @@ TODO:
       - explanations to the day info boxes
       - hour info mode selected 
       - hour graph
+      - transitions
 */
