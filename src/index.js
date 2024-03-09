@@ -23,6 +23,8 @@ TODO:
 
     + append the weather data to the template dynamically
 
+    + append a city name dynamically
+
     - add the ability to switch between temp modes
 
     - add info to hours graph 

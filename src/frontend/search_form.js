@@ -1,4 +1,5 @@
 import { getRequiredWeather } from '../backend/weather_handler';
+import { showCityName } from './city_info';
 import {
   showCondition,
   showHumidity,
@@ -11,12 +12,13 @@ const searchForm = document.querySelector('form');
 searchForm.addEventListener('submit', async (event) => {
   event.preventDefault();
 
-  const weather = await getRequiredWeather(
-    searchForm.elements['location'].value
-  );
+  const cityName = searchForm.elements['location'].value;
+
+  const weather = await getRequiredWeather(cityName);
 
   console.log(weather);
 
+  showCityName(cityName);
   showCondition(weather.day.condition);
   showTemperature(weather.day.avgTemp);
   showHumidity(weather.day.avgHumidity);
