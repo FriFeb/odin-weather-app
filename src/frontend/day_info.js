@@ -1,25 +1,25 @@
 export function showCondition(condition) {
-  const image = document.querySelector('.condition-box-image');
-  const text = document.querySelector('.condition-box-text');
+  const image = document.querySelector('.condition-box .dynamic-box-image');
+  const text = document.querySelector('.condition-box .dynamic-box-text');
 
   image.src = condition.icon;
   text.innerHTML = condition.text;
 }
 
 export function showTemperature(temperature) {
-  const text = document.querySelector('.temperature-box-text');
+  const text = document.querySelector('.temperature-box .dynamic-box-text');
 
   text.innerHTML = `${temperature.avgTemp_C} °C`;
 }
 
 export function showHumidity(humidity) {
-  const text = document.querySelector('.humidity-box-text');
+  const text = document.querySelector('.humidity-box .dynamic-box-text');
 
   text.innerHTML = `${humidity} %`;
 }
 
 export function showUvIndex(uvIndex) {
-  const text = document.querySelector('.uv-index-box-text');
+  const text = document.querySelector('.uv-index-box .dynamic-box-text');
 
   text.innerHTML = uvIndex;
 }

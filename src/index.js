@@ -36,8 +36,9 @@ TODO:
     - add advanced styling
       - location input 
       - temp mode selection
-      - explanations to the day info boxes
+      + explanations to the day info boxes
       - hour info mode selected 
       - hour graph
-      - transitions
+      - transitions ...
+      - change environment based on temperature ...
 */
