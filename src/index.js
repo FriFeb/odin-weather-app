@@ -25,6 +25,8 @@ TODO:
 
     + append a city name dynamically
 
+    + show the weather info after form submit
+    
     - add the ability to switch between temp modes
 
     - add info to hours graph 
@@ -35,6 +37,7 @@ TODO:
 
     - add advanced styling
       - location input 
+      - search btn
       - temp mode selection
       + explanations to the day info boxes
       - hour info mode selected 

@@ -1,4 +1,5 @@
 import { getRequiredWeather } from '../backend/weather_handler';
+import { showMainSection } from './main';
 import { showCityName } from './city_info';
 import {
   showCondition,
@@ -18,6 +19,7 @@ searchForm.addEventListener('submit', async (event) => {
 
   console.log(weather);
 
+  showMainSection();
   showCityName(cityName);
   showCondition(weather.day.condition);
   showTemperature(weather.day.avgTemp);
