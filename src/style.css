@@ -8,8 +8,8 @@
 body {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  padding: 1rem 20%;
+  gap: 3rem;
+  padding: 3rem 20%;
 }
 
 form {
@@ -20,14 +20,33 @@ form {
   gap: 1rem;
 }
 
+input {
+  border: 0;
+  border-bottom: 3px solid grey;
+  outline: none;
+  font-size: 1rem;
+  transition: all 0.15s;
+}
+
+input:hover,
+input:focus-visible {
+  border-color: blue;
+}
+
 button {
   background-color: white;
   border: none;
   font-size: 1.2rem;
+  transition: all 0.15s;
+}
+
+button:hover,
+button:focus-visible {
+  scale: 1.25;
 }
 
 .main {
-  display: flex;
+  display: none;
   flex-direction: column;
   gap: 3rem;
   padding: 3rem;

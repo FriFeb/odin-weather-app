@@ -8,7 +8,7 @@ TODO:
 
     + chunk code into separate modules
 
-    - handle 'no city found' errors
+    - handle 'no city found' error
 
   Frontend:
   
@@ -25,9 +25,11 @@ TODO:
 
     + append a city name dynamically
 
-    + show the weather info after form submit
+    + show the weather info after the form submit
     
-    - add the ability to switch between temp modes
+    - show a loading icon until a response is received 
+    
+    - add the ability to switch between the temp modes
 
     - add info to hours graph 
       - brainstorm how to show the data
@@ -35,13 +37,16 @@ TODO:
 
     - add the ability to toggle between hour graphs
 
-    - add advanced styling
-      - location input 
-      - search btn
-      - temp mode selection
+    Styling: 
+
+      + location input 
+      + search btn
       + explanations to the day info boxes
+      - 'no city found' error
+      - loading icon animation
+      - temp mode selection
       - hour info mode selected 
       - hour graph
-      - transitions ...
+      - animations to the main section ...
       - change environment based on temperature ...
 */
