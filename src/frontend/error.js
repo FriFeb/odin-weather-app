@@ -1,4 +1,4 @@
-const error = document.querySelector('.error');
+const error = document.querySelector('.error-wrapper');
 const errorMessage = document.querySelector('.error-message');
 
 export function showErrorSection() {

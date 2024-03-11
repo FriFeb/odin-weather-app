@@ -18,56 +18,60 @@
     </button>
   </form>
 
-  <div class="main">
-    <div class="control">
-      <h3 class="city-name">City Name Here!</h3>
-      <select id="temperature-mode">
-        <option value="0">°C</option>
-        <option value="1">°F</option>
-      </select>
-    </div>
-    <div class="day-info">
-      <div class="condition-box">
-        <img class="dynamic-box-image" src="//cdn.weatherapi.com/weather/64x64/day/116.png" alt="">
-        <div class="dynamic-box-text">Partly Cloudy</div>
+  <div class="main-wrapper">
+    <div class="main">
+      <div class="control">
+        <h3 class="city-name">City Name Here!</h3>
+        <select id="temperature-mode">
+          <option value="0">°C</option>
+          <option value="1">°F</option>
+        </select>
       </div>
-      <div class="temperature-box">
-        <h1 class="bi bi-thermometer-half"></h1>
-        <div class="day-info-box-wrapper">
-          <div class="dynamic-box-text">29 °C</div>
-          <div class="day-info-box-explanation">Temperature</div>
+      <div class="day-info">
+        <div class="condition-box">
+          <img class="dynamic-box-image" src="//cdn.weatherapi.com/weather/64x64/day/116.png" alt="">
+          <div class="dynamic-box-text">Partly Cloudy</div>
+        </div>
+        <div class="temperature-box">
+          <i class="bi bi-thermometer-half"></i>
+          <div class="day-info-box-wrapper">
+            <h2 class="dynamic-box-text">29 °C</h2>
+            <div class="day-info-box-explanation">Temperature</div>
+          </div>
+        </div>
+        <div class="humidity-box">
+          <i class="bi bi-droplet-half"></i>
+          <div class="day-info-box-wrapper">
+            <h2 class="dynamic-box-text">78%</h2>
+            <div class="day-info-box-explanation">Humidity</div>
+          </div>
+        </div>
+        <div class="uv-index-box">
+          <i class="bi bi-brightness-high"></i>
+          <div class="day-info-box-wrapper">
+            <h2 class="dynamic-box-text">1</h2>
+            <div class="day-info-box-explanation">UV index</div>
+          </div>
         </div>
       </div>
-      <div class="humidity-box">
-        <h1 class="bi bi-droplet-half"></h1>
-        <div class="day-info-box-wrapper">
-          <div class="dynamic-box-text">78%</div>
-          <div class="day-info-box-explanation">Humidity</div>
-        </div>
+      <div class="hours-info">
+        <ul class="hours-info-mode">
+          <li class="hours-temperature">Temperature</li>
+          <li class="hours-humidity">Humidity</li>
+          <li class="hours-clouds">Clouds</li>
+        </ul>
+        <div class="hours-info-graph"></div>
       </div>
-      <div class="uv-index-box">
-        <h1 class="bi bi-brightness-high-fill"></h1>
-        <div class="day-info-box-wrapper">
-          <div class="dynamic-box-text">1</div>
-          <div class="day-info-box-explanation">UV index</div>
-        </div>
-      </div>
-    </div>
-    <div class="hours-info">
-      <ul class="hours-info-mode">
-        <li class="hours-temperature">Temperature</li>
-        <li class="hours-humidity">Humidity</li>
-        <li class="hours-clouds">Clouds</li>
-      </ul>
-      <div class="hours-info-graph"></div>
     </div>
   </div>
 
-  <div class="error">
-    <i class="bi bi-emoji-frown-fill"></i>
-    <div class="error-text">
-      <h2>Ooops!</h2>
-      <p class="error-message"></p>
+  <div class="error-wrapper">
+    <div class="error">
+      <i class="bi bi-emoji-frown"></i>
+      <div class="error-text">
+        <h2>Ooops!</h2>
+        <p class="error-message"></p>
+      </div>
     </div>
   </div>
 

@@ -45,6 +45,8 @@ TODO:
       + search btn
       + explanations to the day info boxes
       + 'no city found' error
+      + main content in center
+      + error in center
       - loading icon animation
       - temp mode selection
       - hour info mode selected 

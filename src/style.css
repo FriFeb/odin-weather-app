@@ -6,9 +6,9 @@
 }
 
 body {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 3rem; */
   padding: 3rem 20%;
 }
 
@@ -18,6 +18,8 @@ form {
   width: max-content;
   margin: auto;
   gap: 1rem;
+  position: relative;
+  z-index: 1;
 }
 
 input {
@@ -45,13 +47,22 @@ button:focus-visible {
   scale: 1.25;
 }
 
-.main {
+.main-wrapper {
+  box-sizing: border-box;
+  height: calc(100vh - 10rem);
   display: none;
+  align-items: center;
+}
+
+.main {
+  flex: 1;
+  display: flex;
   flex-direction: column;
   gap: 3rem;
   padding: 3rem;
   border: 1px solid;
   border-radius: 1rem;
+  height: max-content;
 }
 
 .control {
@@ -79,8 +90,12 @@ button:focus-visible {
   width: 20%;
 }
 
+.day-info i {
+  font-size: 2.5rem;
+}
+
 .condition-box > .dynamic-box-text {
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
 .dynamic-box-text {
@@ -113,9 +128,16 @@ button:focus-visible {
   background-color: gray;
 }
 
-.error {
-  align-self: center;
+.error-wrapper {
+  box-sizing: border-box;
+  height: calc(100vh - 10rem);
   display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.error {
+  display: flex;
   gap: 1rem;
 }
 
