@@ -37,15 +37,13 @@ function getRequiredHoursWeather(hoursWeather) {
 }
 
 export async function getRequiredWeather(location) {
-  try {
-    const weather = await getApiResponseWeather('forecast.json', location);
+  const weather = await getApiResponseWeather('forecast.json', location);
 
-    return {
-      date: weather.forecast.forecastday[0].date,
-      day: getRequiredDayWeather(weather.forecast.forecastday[0].day),
-      hours: getRequiredHoursWeather(weather.forecast.forecastday[0].hour),
-    };
-  } catch (err) {
-    console.log(err);
-  }
+  const forecast = weather.forecast.forecastday[0];
+
+  return {
+    date: forecast.date,
+    day: getRequiredDayWeather(forecast.day),
+    hours: getRequiredHoursWeather(forecast.hour),
+  };
 }

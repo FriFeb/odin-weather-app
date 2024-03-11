@@ -8,7 +8,7 @@ TODO:
 
     + chunk code into separate modules
 
-    - handle 'no city found' error
+    + handle 'no city found' error
 
   Frontend:
   

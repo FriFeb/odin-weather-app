@@ -11,18 +11,20 @@ import {
 const searchForm = document.querySelector('form');
 
 searchForm.addEventListener('submit', async (event) => {
-  event.preventDefault();
+  try {
+    event.preventDefault();
 
-  const cityName = searchForm.elements['location'].value;
+    const cityName = searchForm.elements['location'].value;
 
-  const weather = await getRequiredWeather(cityName);
+    const weather = await getRequiredWeather(cityName);
 
-  console.log(weather);
-
-  showMainSection();
-  showCityName(cityName);
-  showCondition(weather.day.condition);
-  showTemperature(weather.day.avgTemp);
-  showHumidity(weather.day.avgHumidity);
-  showUvIndex(weather.day.uvIndex);
+    showMainSection();
+    showCityName(cityName);
+    showCondition(weather.day.condition);
+    showTemperature(weather.day.avgTemp);
+    showHumidity(weather.day.avgHumidity);
+    showUvIndex(weather.day.uvIndex);
+  } catch (err) {
+    console.log(err.message);
+  }
 });
