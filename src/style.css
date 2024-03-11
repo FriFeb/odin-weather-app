@@ -112,3 +112,18 @@ button:focus-visible {
   height: 200px;
   background-color: gray;
 }
+
+.error {
+  align-self: center;
+  display: none;
+  gap: 1rem;
+}
+
+.error i {
+  font-size: 3rem;
+}
+
+.error-text {
+  display: flex;
+  flex-direction: column;
+}

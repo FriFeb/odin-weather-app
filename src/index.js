@@ -27,6 +27,8 @@ TODO:
 
     + show the weather info after the form submit
     
+    + show 'no city found' error
+
     - show a loading icon until a response is received 
     
     - add the ability to switch between the temp modes
@@ -42,7 +44,7 @@ TODO:
       + location input 
       + search btn
       + explanations to the day info boxes
-      - 'no city found' error
+      + 'no city found' error
       - loading icon animation
       - temp mode selection
       - hour info mode selected 
