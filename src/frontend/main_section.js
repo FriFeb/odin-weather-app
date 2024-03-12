@@ -1,4 +1,4 @@
-const main = document.querySelector('.main-wrapper');
+const main = document.querySelector('.main-section');
 
 export function showMainSection() {
   main.style.display = 'flex';

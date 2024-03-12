@@ -10,10 +10,14 @@ TODO:
 
     + handle 'no city found' error
 
+    - grab day data from weather.current object
+
+    - seize country and local time
+
   Frontend:
   
     + brainstorm what I need to show 
-      + day - condition, temp, humidity, uv
+      - day - condition, temp, humidity, cloud, uv
       + hours - temp, humidity, cloud (as 3 different tabs)
 
     + create a template to show the data
@@ -29,8 +33,10 @@ TODO:
     
     + show 'no city found' error
 
-    - show a loading icon until a response is received 
-    
+    + show a loading icon until a response is received 
+
+    - show a local time and a city location
+
     - add the ability to switch between the temp modes
 
     - add info to hours graph 
@@ -47,7 +53,9 @@ TODO:
       + 'no city found' error
       + main content in center
       + error in center
-      - loading icon animation
+      + loading icon animation
+      - local time
+      - city location
       - temp mode selection
       - hour info mode selected 
       - hour graph

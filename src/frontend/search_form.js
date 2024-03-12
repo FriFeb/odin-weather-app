@@ -1,5 +1,5 @@
 import { getRequiredWeather } from '../backend/weather_handler';
-import { hideMainSection, showMainSection } from './main';
+import { hideMainSection, showMainSection } from './main_section';
 import { showCityName } from './city_info';
 import {
   showCondition,
@@ -7,19 +7,28 @@ import {
   showTemperature,
   showUvIndex,
 } from './day_info';
-import { hideErrorSection, showErrorMessage, showErrorSection } from './error';
+import {
+  hideErrorSection,
+  showErrorMessage,
+  showErrorSection,
+} from './error_section';
+import { hideLoadingSection, showLoadingSection } from './loading_section';
 
 const searchForm = document.querySelector('form');
 
 searchForm.addEventListener('submit', async (event) => {
   try {
+    hideErrorSection();
+    hideMainSection();
+    showLoadingSection();
+
     event.preventDefault();
 
     const cityName = searchForm.elements['location'].value;
 
     const weather = await getRequiredWeather(cityName);
 
-    hideErrorSection();
+    hideLoadingSection();
     showMainSection();
     showCityName(cityName);
     showCondition(weather.day.condition);
@@ -28,7 +37,7 @@ searchForm.addEventListener('submit', async (event) => {
     showUvIndex(weather.day.uvIndex);
   } catch (err) {
     console.log(err);
-    hideMainSection();
+    hideLoadingSection();
     showErrorSection();
     showErrorMessage(err.message);
   }

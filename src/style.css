@@ -6,9 +6,6 @@
 }
 
 body {
-  /* display: flex;
-  flex-direction: column;
-  gap: 3rem; */
   padding: 3rem 20%;
 }
 
@@ -47,11 +44,14 @@ button:focus-visible {
   scale: 1.25;
 }
 
-.main-wrapper {
+.main-section,
+.error-section,
+.loading-section {
   box-sizing: border-box;
   height: calc(100vh - 10rem);
   display: none;
   align-items: center;
+  justify-content: center;
 }
 
 .main {
@@ -128,7 +128,7 @@ button:focus-visible {
   background-color: gray;
 }
 
-.error-wrapper {
+.error-section {
   box-sizing: border-box;
   height: calc(100vh - 10rem);
   display: none;
@@ -141,11 +141,25 @@ button:focus-visible {
   gap: 1rem;
 }
 
-.error i {
+.error i,
+.loading-section i {
   font-size: 3rem;
 }
 
 .error-text {
   display: flex;
   flex-direction: column;
+}
+
+.loading-section i {
+  animation: rotation 1s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0turn);
+  }
+  to {
+    transform: rotate(1turn);
+  }
 }
