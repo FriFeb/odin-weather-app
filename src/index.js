@@ -17,7 +17,7 @@ TODO:
   Frontend:
   
     + brainstorm what I need to show 
-      - day - condition, temp, humidity, cloud, uv
+      + day - condition, temp, humidity, cloud, uv
       + hours - temp, humidity, cloud (as 3 different tabs)
 
     + create a template to show the data

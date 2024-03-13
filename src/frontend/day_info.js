@@ -18,6 +18,12 @@ export function showHumidity(humidity) {
   text.innerHTML = `${humidity} %`;
 }
 
+export function showCloud(cloud) {
+  const text = document.querySelector('.cloud-box .dynamic-box-text');
+
+  text.innerHTML = cloud;
+}
+
 export function showUv(uv) {
   const text = document.querySelector('.uv-index-box .dynamic-box-text');
 

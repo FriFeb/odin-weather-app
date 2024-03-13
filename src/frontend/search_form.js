@@ -34,6 +34,7 @@ searchForm.addEventListener('submit', async (event) => {
     showCondition(weather.day.condition);
     showTemperature(weather.day.temp);
     showHumidity(weather.day.humidity);
+    showCloud(weather.day.cloud);
     showUv(weather.day.uv);
   } catch (err) {
     console.log(err);
