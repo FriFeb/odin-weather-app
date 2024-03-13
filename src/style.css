@@ -71,10 +71,32 @@ button:focus-visible {
   align-items: center;
 }
 
-.city-name {
+.location {
   padding: 1rem 0;
+}
+
+.city,
+.local-time {
   font-size: 1.75rem;
   font-weight: normal;
+}
+
+.country,
+.time-explanation {
+  font-size: 0.85rem;
+  color: rgb(0 0 0 / 80%);
+}
+
+.time {
+  position: absolute;
+  left: calc(50% - 50px);
+  width: 100px;
+  text-align: center;
+}
+
+.local-date {
+  font-size: 0.9rem;
+  font-weight: bold;
 }
 
 .day-info {

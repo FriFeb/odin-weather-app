@@ -35,7 +35,7 @@ TODO:
 
     + show a loading icon until a response is received 
 
-    - show a local time and a city location
+    + show local time and city location
 
     - add the ability to switch between the temp modes
 
@@ -54,8 +54,8 @@ TODO:
       + main content in center
       + error in center
       + loading icon animation
-      - local time
-      - city location
+      + local time
+      + city location
       - temp mode selection
       - hour info mode selected 
       - hour graph

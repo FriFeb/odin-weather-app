@@ -1,7 +1,8 @@
 import { getRequiredWeather } from '../backend/weather_handler';
 import { hideMainSection, showMainSection } from './main_section';
-import { showCityName } from './city_info';
+import { showCityName, showCountryName, showTime } from './location_info';
 import {
+  showCloud,
   showCondition,
   showHumidity,
   showTemperature,
@@ -24,18 +25,26 @@ searchForm.addEventListener('submit', async (event) => {
 
     event.preventDefault();
 
-    const cityName = searchForm.elements['location'].value;
+    const userInputCityName = searchForm.elements['location'].value;
 
-    const weather = await getRequiredWeather(cityName);
+    const weather = await getRequiredWeather(userInputCityName);
+
+    const location = weather.location;
+    const day = weather.day;
+    const hours = weather.hours;
 
     hideLoadingSection();
     showMainSection();
-    showCityName(weather.location.cityName);
-    showCondition(weather.day.condition);
-    showTemperature(weather.day.temp);
-    showHumidity(weather.day.humidity);
-    showCloud(weather.day.cloud);
-    showUv(weather.day.uv);
+
+    showCityName(location.cityName);
+    showCountryName(location.country);
+    showTime(location.time);
+
+    showCondition(day.condition);
+    showTemperature(day.temp);
+    showHumidity(day.humidity);
+    showCloud(day.cloud);
+    showUv(day.uv);
   } catch (err) {
     console.log(err);
     hideLoadingSection();

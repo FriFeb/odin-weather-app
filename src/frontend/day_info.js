@@ -21,7 +21,7 @@ export function showHumidity(humidity) {
 export function showCloud(cloud) {
   const text = document.querySelector('.cloud-box .dynamic-box-text');
 
-  text.innerHTML = cloud;
+  text.innerHTML = `${cloud} %`;
 }
 
 export function showUv(uv) {
