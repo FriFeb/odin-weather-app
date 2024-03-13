@@ -1,25 +1,26 @@
 import { getApiResponseWeather } from './response';
 
+function getRequiredLocation(location) {
+  return {
+    cityName: location.name,
+    country: location.country,
+    time: location.localtime,
+  };
+}
+
 function getRequiredDayWeather(dayWeather) {
   return {
-    minTemp: {
-      minTemp_C: dayWeather.mintemp_c,
-      minTemp_F: dayWeather.mintemp_f,
-    },
-    avgTemp: {
-      avgTemp_C: dayWeather.avgtemp_c,
-      avgTemp_F: dayWeather.avgtemp_f,
-    },
-    maxTemp: {
-      maxTemp_C: dayWeather.maxtemp_c,
-      maxTemp_F: dayWeather.maxtemp_f,
-    },
-    avgHumidity: dayWeather.avghumidity,
     condition: {
       text: dayWeather.condition.text,
       icon: dayWeather.condition.icon,
     },
-    uvIndex: dayWeather.uv,
+    temp: {
+      temp_C: dayWeather.temp_c,
+      temp_F: dayWeather.temp_f,
+    },
+    humidity: dayWeather.humidity,
+    cloud: dayWeather.cloud,
+    uv: dayWeather.uv,
   };
 }
 
@@ -42,8 +43,8 @@ export async function getRequiredWeather(location) {
   const forecast = weather.forecast.forecastday[0];
 
   return {
-    date: forecast.date,
-    day: getRequiredDayWeather(forecast.day),
+    location: getRequiredLocation(weather.location),
+    day: getRequiredDayWeather(weather.current),
     hours: getRequiredHoursWeather(forecast.hour),
   };
 }

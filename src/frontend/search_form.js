@@ -5,7 +5,7 @@ import {
   showCondition,
   showHumidity,
   showTemperature,
-  showUvIndex,
+  showUv,
 } from './day_info';
 import {
   hideErrorSection,
@@ -30,11 +30,11 @@ searchForm.addEventListener('submit', async (event) => {
 
     hideLoadingSection();
     showMainSection();
-    showCityName(cityName);
+    showCityName(weather.location.cityName);
     showCondition(weather.day.condition);
-    showTemperature(weather.day.avgTemp);
-    showHumidity(weather.day.avgHumidity);
-    showUvIndex(weather.day.uvIndex);
+    showTemperature(weather.day.temp);
+    showHumidity(weather.day.humidity);
+    showUv(weather.day.uv);
   } catch (err) {
     console.log(err);
     hideLoadingSection();

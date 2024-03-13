@@ -10,9 +10,9 @@ TODO:
 
     + handle 'no city found' error
 
-    - grab day data from weather.current object
+    + grab day data from weather.current object
 
-    - seize country and local time
+    + seize country and local time
 
   Frontend:
   

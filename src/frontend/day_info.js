@@ -9,7 +9,7 @@ export function showCondition(condition) {
 export function showTemperature(temperature) {
   const text = document.querySelector('.temperature-box .dynamic-box-text');
 
-  text.innerHTML = `${temperature.avgTemp_C} °C`;
+  text.innerHTML = `${temperature.temp_C} °C`;
 }
 
 export function showHumidity(humidity) {
@@ -18,8 +18,8 @@ export function showHumidity(humidity) {
   text.innerHTML = `${humidity} %`;
 }
 
-export function showUvIndex(uvIndex) {
+export function showUv(uv) {
   const text = document.querySelector('.uv-index-box .dynamic-box-text');
 
-  text.innerHTML = uvIndex;
+  text.innerHTML = uv;
 }
