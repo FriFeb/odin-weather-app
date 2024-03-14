@@ -1,4 +1,5 @@
-import { getRequiredWeather } from '../backend/weather_handler';
+import { getWeather } from '../backend/weather_cache';
+import { getTempMode } from './temp_mode';
 import { hideMainSection, showMainSection } from './main_section';
 import { showCityName, showCountryName, showTime } from './location_info';
 import {
@@ -27,7 +28,7 @@ searchForm.addEventListener('submit', async (event) => {
 
     const userInputCityName = searchForm.elements['location'].value;
 
-    const weather = await getRequiredWeather(userInputCityName);
+    const weather = await getWeather(userInputCityName);
 
     const location = weather.location;
     const day = weather.day;
@@ -41,7 +42,7 @@ searchForm.addEventListener('submit', async (event) => {
     showTime(location.time);
 
     showCondition(day.condition);
-    showTemperature(day.temp);
+    showTemperature(day.temp, getTempMode());
     showHumidity(day.humidity);
     showCloud(day.cloud);
     showUv(day.uv);

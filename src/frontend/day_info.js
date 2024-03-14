@@ -6,10 +6,18 @@ export function showCondition(condition) {
   text.innerHTML = condition.text;
 }
 
-export function showTemperature(temperature) {
+export function showTemperature(temperature, mode) {
   const text = document.querySelector('.temperature-box .dynamic-box-text');
 
-  text.innerHTML = `${temperature.temp_C} °C`;
+  switch (mode) {
+    case '0':
+      text.innerHTML = `${temperature.temp_C} °C`;
+      break;
+
+    case '1':
+      text.innerHTML = `${temperature.temp_F} °F`;
+      break;
+  }
 }
 
 export function showHumidity(humidity) {

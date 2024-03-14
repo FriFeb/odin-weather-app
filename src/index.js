@@ -1,5 +1,6 @@
 import './style.css';
 import './frontend/search_form';
+import './frontend/temp_mode';
 
 /* 
 TODO: 
@@ -37,11 +38,12 @@ TODO:
 
     + show local time and city location
 
-    - add the ability to switch between the temp modes
+    + add the ability to switch between the temp modes
 
     - add info to hours graph 
       - brainstorm how to show the data
-      - ...
+      - show temp data
+      - show humidity and cloud data
 
     - add the ability to toggle between hour graphs
 
@@ -57,8 +59,8 @@ TODO:
       + local time
       + city location
       - temp mode selection
-      - hour info mode selected 
       - hour graph
+      - hour info mode selected 
       - animations to the main section ...
       - change environment based on temperature ...
 */
