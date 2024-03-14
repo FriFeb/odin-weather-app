@@ -1,7 +1,7 @@
-import { setLastFetchedWeather } from './last_fetched_weather';
 import { getRequiredWeather } from './weather_handler';
 
 const weatherCache = {};
+let lastFetchedLocation;
 
 export async function getWeather(location) {
   if (!weatherCache[location]) {
@@ -9,6 +9,10 @@ export async function getWeather(location) {
     weatherCache[location] = weather;
   }
 
-  setLastFetchedWeather(weatherCache[location]);
+  lastFetchedLocation = location;
   return weatherCache[location];
+}
+
+export function getLastFetchedWeather() {
+  return weatherCache[lastFetchedLocation];
 }
