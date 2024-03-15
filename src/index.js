@@ -1,6 +1,7 @@
 import './style.css';
+import './frontend/search_form_elements/input';
 import './frontend/search_form';
-import './frontend/temp_mode';
+import './frontend/main_section_elements/temp_mode';
 
 /* 
 TODO: 
@@ -40,6 +41,8 @@ TODO:
 
     + add the ability to switch between the temp modes
 
+    + add clear button to the input field
+
     - add info to hours graph 
       - brainstorm how to show the data
       - show temp data
@@ -50,6 +53,7 @@ TODO:
     Styling: 
 
       + location input 
+      + clear button in the input field
       + search btn
       + explanations to the day info boxes
       + 'no city found' error

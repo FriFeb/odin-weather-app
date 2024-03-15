@@ -21,6 +21,7 @@ form {
 
 input {
   border: 0;
+  padding: 0.5rem 0;
   border-bottom: 3px solid grey;
   outline: none;
   font-size: 1rem;
@@ -32,16 +33,31 @@ input:focus-visible {
   border-color: blue;
 }
 
-button {
-  background-color: white;
-  border: none;
-  font-size: 1.2rem;
-  transition: all 0.15s;
+.clear {
+  display: none;
+  position: absolute;
+  right: 15%;
 }
 
-button:hover,
-button:focus-visible {
+.clear:hover > i,
+.clear:focus-visible > i {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.clear,
+.search {
+  background-color: white;
+  border: none;
+  font-size: 1.5rem;
+  transition: all 0.2s;
+}
+
+.search:hover,
+.search:focus-visible {
   scale: 1.25;
+  cursor: pointer;
 }
 
 .main-section,

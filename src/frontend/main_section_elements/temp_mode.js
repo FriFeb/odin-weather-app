@@ -1,5 +1,5 @@
 import { showTemperature } from './day_info';
-import { getLastFetchedWeather } from '../backend/weather_cache';
+import { getLastFetchedWeather } from '../../backend/weather_cache';
 
 const tempMode = document.querySelector('#temperature-mode');
 

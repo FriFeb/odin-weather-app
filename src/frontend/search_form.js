@@ -1,20 +1,27 @@
 import { getWeather } from '../backend/weather_cache';
-import { getTempMode } from './temp_mode';
-import { hideMainSection, showMainSection } from './main_section';
-import { showCityName, showCountryName, showTime } from './location_info';
+import { getTempMode } from './main_section_elements/temp_mode';
+import { hideMainSection, showMainSection } from './sections/main_section';
+import {
+  showCityName,
+  showCountryName,
+  showTime,
+} from './main_section_elements/location_info';
 import {
   showCloud,
   showCondition,
   showHumidity,
   showTemperature,
   showUv,
-} from './day_info';
+} from './main_section_elements/day_info';
 import {
   hideErrorSection,
   showErrorMessage,
   showErrorSection,
-} from './error_section';
-import { hideLoadingSection, showLoadingSection } from './loading_section';
+} from './sections/error_section';
+import {
+  hideLoadingSection,
+  showLoadingSection,
+} from './sections/loading_section';
 
 const searchForm = document.querySelector('form');
 
