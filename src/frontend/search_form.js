@@ -1,5 +1,5 @@
 import { getWeather } from '../backend/weather_cache';
-import { getTempMode } from './main_section_elements/temp_mode';
+import { getTempMode } from '../backend/temp_mode';
 import { hideMainSection, showMainSection } from './sections/main_section';
 import {
   showCityName,

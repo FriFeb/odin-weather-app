@@ -115,9 +115,29 @@ input:focus-visible {
   font-weight: bold;
 }
 
+.temperature-selection {
+  display: flex;
+  user-select: none;
+}
+
+.temperature-selection > * {
+  border-bottom: 3px solid white;
+  padding: 6px;
+  transition: all 0.2s;
+}
+
+.temp-mode:hover {
+  border-bottom: 3px solid rgba(0, 0, 0, 0.3);
+}
+
+.temp-mode.temp-mode-active {
+  border-bottom: 3px solid black;
+}
+
 .day-info {
   display: flex;
   justify-content: space-between;
+  margin: 0 -3rem;
 }
 
 .day-info > div {

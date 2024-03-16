@@ -1,7 +1,7 @@
 import './style.css';
 import './frontend/search_form_elements/input';
 import './frontend/search_form';
-import './frontend/main_section_elements/temp_mode';
+import './frontend/main_section_elements/temp_mode_selection';
 
 /* 
 TODO: 
@@ -62,7 +62,7 @@ TODO:
       + loading icon animation
       + local time
       + city location
-      - temp mode selection
+      + temp mode selection
       - hour graph
       - hour info mode selected 
       - animations to the main section ...

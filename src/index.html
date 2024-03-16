@@ -38,10 +38,11 @@
           <div class="time-explanation">Local time</div>
         </div>
 
-        <select id="temperature-mode">
-          <option value="0">°C</option>
-          <option value="1">°F</option>
-        </select>
+        <div class="temperature-selection">
+          <div data-temperature-mode="0" class="temp-mode temp-mode-active">°C</div>
+          <span> | </span>
+          <div data-temperature-mode="1" class="temp-mode">°F</div>
+        </div>
       </div>
 
       <div class="day-info">
