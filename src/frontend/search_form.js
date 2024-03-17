@@ -26,7 +26,7 @@ import {
   showCloudGraph,
   showHumidityGraph,
   showTempGraph,
-} from './main_section_elements/hour_info';
+} from './main_section_elements/hour_info/hour_info_graph';
 
 const searchForm = document.querySelector('form');
 
@@ -59,11 +59,7 @@ searchForm.addEventListener('submit', async (event) => {
     showCloud(day.cloud);
     showUv(day.uv);
 
-    // debugger;
-
     showTempGraph(hours, getTempMode());
-    // showHumidityGraph(hours);
-    // showCloudGraph(hours);
   } catch (err) {
     console.log(err);
     hideLoadingSection();

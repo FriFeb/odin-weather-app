@@ -5,7 +5,7 @@ import {
   activateTempModeElement,
   deactivateTempModeElements,
 } from './temp_mode_elements';
-import { showTempGraph } from '../hour_info';
+import { showTempGraph } from '../hour_info/hour_info_graph';
 
 const tempModeSelection = document.querySelector('.temperature-selection');
 

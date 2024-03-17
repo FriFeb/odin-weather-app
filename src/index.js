@@ -2,7 +2,7 @@ import './style.css';
 import './frontend/search_form_elements/input';
 import './frontend/search_form';
 import './frontend/main_section_elements/control/temp_mode_selection';
-
+import './frontend/main_section_elements/hour_info/hour_info_mode';
 /* 
 TODO: 
 
@@ -16,12 +16,14 @@ TODO:
 
     + seize country and local time
 
+    - request all required hour weather data
+
   Frontend:
   
     + brainstorm what I need to show 
       + day - condition, temp, humidity, cloud, uv
-      + hours - temp, humidity, cloud (as 3 different tabs)
-
+      - hours - condition, temp, humidity, cloud, uv
+      
     + create a template to show the data
       + create a basic design in figma
       + write html
@@ -48,7 +50,9 @@ TODO:
       + show temp data
       + show humidity and cloud data
 
-    - add the ability to toggle between hour graphs
+    + add the ability to toggle between hour graphs
+
+    - show hour weather info in main section based on hovered hour in graph 
 
     Styling: 
 
@@ -64,6 +68,9 @@ TODO:
       + city location
       + temp mode selection
       - hour graph
+        - hour labels
+        - hour bars
+        - hover effect
       - hour info mode selected 
       - animations to the main section ...
       - change environment based on temperature ...
