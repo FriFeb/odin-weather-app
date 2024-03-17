@@ -5,7 +5,7 @@ import {
   showCityName,
   showCountryName,
   showTime,
-} from './main_section_elements/location_info';
+} from './main_section_elements/control/location_info';
 import {
   showCloud,
   showCondition,
@@ -22,6 +22,11 @@ import {
   hideLoadingSection,
   showLoadingSection,
 } from './sections/loading_section';
+import {
+  showCloudGraph,
+  showHumidityGraph,
+  showTempGraph,
+} from './main_section_elements/hour_info';
 
 const searchForm = document.querySelector('form');
 
@@ -53,6 +58,12 @@ searchForm.addEventListener('submit', async (event) => {
     showHumidity(day.humidity);
     showCloud(day.cloud);
     showUv(day.uv);
+
+    // debugger;
+
+    showTempGraph(hours, getTempMode());
+    // showHumidityGraph(hours);
+    // showCloudGraph(hours);
   } catch (err) {
     console.log(err);
     hideLoadingSection();

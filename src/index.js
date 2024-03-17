@@ -1,7 +1,7 @@
 import './style.css';
 import './frontend/search_form_elements/input';
 import './frontend/search_form';
-import './frontend/main_section_elements/temp_mode_selection';
+import './frontend/main_section_elements/control/temp_mode_selection';
 
 /* 
 TODO: 
@@ -43,10 +43,10 @@ TODO:
 
     + add clear button to the input field
 
-    - add info to hours graph 
-      - brainstorm how to show the data
-      - show temp data
-      - show humidity and cloud data
+    + add info to hours graph 
+      + brainstorm how to show the data
+      + show temp data
+      + show humidity and cloud data
 
     - add the ability to toggle between hour graphs
 

@@ -1,10 +1,11 @@
-import { showTemperature } from './day_info';
-import { getTempMode, setTempMode } from '../../backend/temp_mode';
-import { getLastFetchedWeather } from '../../backend/weather_cache';
+import { showTemperature } from '../day_info';
+import { getTempMode, setTempMode } from '../../../backend/temp_mode';
+import { getLastFetchedWeather } from '../../../backend/weather_cache';
 import {
   activateTempModeElement,
   deactivateTempModeElements,
 } from './temp_mode_elements';
+import { showTempGraph } from '../hour_info';
 
 const tempModeSelection = document.querySelector('.temperature-selection');
 
@@ -24,4 +25,5 @@ tempModeSelection.addEventListener('click', (e) => {
 
   const lastFetchedWeather = getLastFetchedWeather();
   showTemperature(lastFetchedWeather.day.temp, getTempMode());
+  showTempGraph(lastFetchedWeather.hours, getTempMode());
 });
