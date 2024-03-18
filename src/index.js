@@ -16,13 +16,13 @@ TODO:
 
     + seize country and local time
 
-    - request all required hour weather data
+    + request all required hour weather data
 
   Frontend:
   
     + brainstorm what I need to show 
       + day - condition, temp, humidity, cloud, uv
-      - hours - condition, temp, humidity, cloud, uv
+      + hours - condition, temp, humidity, cloud, uv
       
     + create a template to show the data
       + create a basic design in figma

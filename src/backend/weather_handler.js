@@ -27,12 +27,17 @@ function getRequiredDayWeather(dayWeather) {
 function getRequiredHoursWeather(hoursWeather) {
   return hoursWeather.map((hour) => {
     return {
+      condition: {
+        text: hour.condition.text,
+        icon: hour.condition.icon,
+      },
       temp: {
         temp_C: hour.temp_c,
         temp_F: hour.temp_f,
       },
       humidity: hour.humidity,
       cloud: hour.cloud,
+      uv: hour.uv,
     };
   });
 }
