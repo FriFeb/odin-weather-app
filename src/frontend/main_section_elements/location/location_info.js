@@ -10,13 +10,13 @@ function capitalizeCityName(city) {
   return capitalizedCityName;
 }
 
-export function showCityName(city) {
+function showCityName(city) {
   const text = document.querySelector('.city');
 
   text.innerHTML = capitalizeCityName(city);
 }
 
-export function showCountryName(country) {
+function showCountryName(country) {
   const text = document.querySelector('.country');
 
   text.innerHTML = country;
@@ -43,9 +43,15 @@ function showLocalDate(localDate) {
   text.innerHTML = localDate;
 }
 
-export function showTime(timeString) {
+function showTime(timeString) {
   const time = getSplittedTime(timeString);
 
   showLocalTime(time.localTime);
   showLocalDate(time.localDate);
+}
+
+export function showLocationInfo(location) {
+  showCityName(location.cityName);
+  showCountryName(location.country);
+  showTime(location.time);
 }

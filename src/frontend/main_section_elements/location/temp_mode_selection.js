@@ -1,4 +1,4 @@
-import { showTemperature } from '../day_info';
+import { showTemperature } from '../weather_info';
 import { getTempMode, setTempMode } from '../../../backend/temp_mode';
 import { getLastFetchedWeather } from '../../../backend/weather_cache';
 import {

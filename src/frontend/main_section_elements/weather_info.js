@@ -1,4 +1,4 @@
-export function showCondition(condition) {
+function showCondition(condition) {
   const image = document.querySelector('.condition-box .dynamic-box-image');
   const text = document.querySelector('.condition-box .dynamic-box-text');
 
@@ -6,7 +6,7 @@ export function showCondition(condition) {
   text.innerHTML = condition.text;
 }
 
-export function showTemperature(temperature, mode) {
+function showTemperature(temperature, mode) {
   const text = document.querySelector('.temperature-box .dynamic-box-text');
 
   switch (mode) {
@@ -20,20 +20,28 @@ export function showTemperature(temperature, mode) {
   }
 }
 
-export function showHumidity(humidity) {
+function showHumidity(humidity) {
   const text = document.querySelector('.humidity-box .dynamic-box-text');
 
   text.innerHTML = `${humidity} %`;
 }
 
-export function showCloud(cloud) {
+function showCloud(cloud) {
   const text = document.querySelector('.cloud-box .dynamic-box-text');
 
   text.innerHTML = `${cloud} %`;
 }
 
-export function showUv(uv) {
+function showUv(uv) {
   const text = document.querySelector('.uv-index-box .dynamic-box-text');
 
   text.innerHTML = uv;
+}
+
+export function showWeatherInfo(day) {
+  showCondition(day.condition);
+  showTemperature(day.temp, getTempMode());
+  showHumidity(day.humidity);
+  showCloud(day.cloud);
+  showUv(day.uv);
 }

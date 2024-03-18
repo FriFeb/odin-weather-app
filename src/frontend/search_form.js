@@ -1,69 +1,28 @@
 import { getWeather } from '../backend/weather_cache';
 import { getTempMode } from '../backend/temp_mode';
-import { hideMainSection, showMainSection } from './sections/main_section';
-import {
-  showCityName,
-  showCountryName,
-  showTime,
-} from './main_section_elements/control/location_info';
-import {
-  showCloud,
-  showCondition,
-  showHumidity,
-  showTemperature,
-  showUv,
-} from './main_section_elements/day_info';
-import {
-  hideErrorSection,
-  showErrorMessage,
-  showErrorSection,
-} from './sections/error_section';
-import {
-  hideLoadingSection,
-  showLoadingSection,
-} from './sections/loading_section';
-import {
-  showCloudGraph,
-  showHumidityGraph,
-  showTempGraph,
-} from './main_section_elements/hour_info/hour_info_graph';
+import { showLocationInfo } from './main_section_elements/location/location_info';
+import { showWeatherInfo } from './main_section_elements/weather_info';
+import { showTempGraph } from './main_section_elements/hour_info/hour_info_graph';
+import { showError, showLoading, showMain } from './sections';
 
 const searchForm = document.querySelector('form');
 
 searchForm.addEventListener('submit', async (event) => {
   try {
-    hideErrorSection();
-    hideMainSection();
-    showLoadingSection();
-
+    showLoading();
     event.preventDefault();
 
     const userInputCityName = searchForm.elements['location'].value;
 
     const weather = await getWeather(userInputCityName);
 
-    const location = weather.location;
-    const day = weather.day;
-    const hours = weather.hours;
+    showMain();
 
-    hideLoadingSection();
-    showMainSection();
-
-    showCityName(location.cityName);
-    showCountryName(location.country);
-    showTime(location.time);
-
-    showCondition(day.condition);
-    showTemperature(day.temp, getTempMode());
-    showHumidity(day.humidity);
-    showCloud(day.cloud);
-    showUv(day.uv);
-
-    showTempGraph(hours, getTempMode());
+    showLocationInfo(weather.location);
+    showWeatherInfo(weather.day);
+    showTempGraph(weather.hours, getTempMode());
   } catch (err) {
     console.log(err);
-    hideLoadingSection();
-    showErrorSection();
-    showErrorMessage(err.message);
+    showError(err.message);
   }
 });

@@ -1,7 +1,7 @@
 import './style.css';
 import './frontend/search_form_elements/input';
 import './frontend/search_form';
-import './frontend/main_section_elements/control/temp_mode_selection';
+import './frontend/main_section_elements/location/temp_mode_selection';
 import './frontend/main_section_elements/hour_info/hour_info_mode';
 /* 
 TODO: 
