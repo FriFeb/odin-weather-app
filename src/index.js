@@ -52,7 +52,7 @@ TODO:
 
     + add the ability to toggle between hour graphs
 
-    - show hour weather info in main section based on hovered hour in graph 
+    + show hour weather info in main section based on hovered hour in graph 
 
     Styling: 
 

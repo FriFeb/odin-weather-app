@@ -40,10 +40,10 @@ function showUv(uv) {
   text.innerHTML = uv;
 }
 
-export function showWeatherInfo(day) {
-  showCondition(day.condition);
-  showTemperature(day.temp, getTempMode());
-  showHumidity(day.humidity);
-  showCloud(day.cloud);
-  showUv(day.uv);
+export function showWeatherInfo(weatherObj) {
+  showCondition(weatherObj.condition);
+  showTemperature(weatherObj.temp, getTempMode());
+  showHumidity(weatherObj.humidity);
+  showCloud(weatherObj.cloud);
+  showUv(weatherObj.uv);
 }

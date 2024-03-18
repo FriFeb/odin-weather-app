@@ -183,11 +183,15 @@ input:focus-visible {
 .hours-info-graph {
   width: 80%;
   height: 200px;
-  /* background-color: gray; */
   border: 1px solid;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.hour {
+  flex: 1;
+  height: 100%;
 }
 
 .error-section {
