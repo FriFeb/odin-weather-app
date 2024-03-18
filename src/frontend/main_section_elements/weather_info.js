@@ -1,3 +1,5 @@
+import { getTempMode } from '../../backend/temp_mode';
+
 function showCondition(condition) {
   const image = document.querySelector('.condition-box .dynamic-box-image');
   const text = document.querySelector('.condition-box .dynamic-box-text');
@@ -6,10 +8,10 @@ function showCondition(condition) {
   text.innerHTML = condition.text;
 }
 
-function showTemperature(temperature, mode) {
+export function showTemperature(temperature, tempMode) {
   const text = document.querySelector('.temperature-box .dynamic-box-text');
 
-  switch (mode) {
+  switch (tempMode) {
     case '0':
       text.innerHTML = `${temperature.temp_C} °C`;
       break;

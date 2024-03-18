@@ -1,45 +1,48 @@
 const graph = document.querySelector('.hours-info-graph');
 
-export function showTempGraph(hours, mode) {
+function createHourElements(hours) {
   graph.innerHTML = '';
 
-  hours.forEach((hour) => {
+  hours.forEach((_, index) => {
     const hourElement = document.createElement('div');
-
-    switch (mode) {
-      case '0':
-        hourElement.innerHTML = hour.temp.temp_C;
-        break;
-
-      case '1':
-        hourElement.innerHTML = hour.temp.temp_F;
-        break;
-    }
+    hourElement.className = 'hour';
+    hourElement.id = index;
 
     graph.append(hourElement);
   });
+}
+
+function fillHourElements(hours, weatherType, tempMode) {
+  const hourElements = document.querySelectorAll('.hour');
+
+  hourElements.forEach((hourElement, index) => {
+    const hour = hours[index];
+    const hourWeather = hour[weatherType];
+
+    if (weatherType === 'temp') {
+      switch (tempMode) {
+        case '0':
+          hourElement.innerHTML = hourWeather.temp_C;
+          break;
+        case '1':
+          hourElement.innerHTML = hourWeather.temp_F;
+          break;
+      }
+    } else {
+      hourElement.innerHTML = hourWeather;
+    }
+  });
+}
+
+export function showTempGraph(hours, tempMode) {
+  createHourElements(hours);
+  fillHourElements(hours, 'temp', tempMode);
 }
 
 export function showHumidityGraph(hours) {
-  graph.innerHTML = '';
-
-  hours.forEach((hour) => {
-    const hourElement = document.createElement('div');
-
-    hourElement.innerHTML = hour.humidity;
-
-    graph.append(hourElement);
-  });
+  fillHourElements(hours, 'humidity');
 }
 
 export function showCloudGraph(hours) {
-  graph.innerHTML = '';
-
-  hours.forEach((hour) => {
-    const hourElement = document.createElement('div');
-
-    hourElement.innerHTML = hour.cloud;
-
-    graph.append(hourElement);
-  });
+  fillHourElements(hours, 'cloud');
 }
