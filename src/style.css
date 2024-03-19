@@ -30,7 +30,7 @@ input {
 
 input:hover,
 input:focus-visible {
-  border-color: blue;
+  border-color: black;
 }
 
 .clear {
@@ -128,6 +128,7 @@ input:focus-visible {
 
 .temp-mode:hover {
   border-bottom: 3px solid rgba(0, 0, 0, 0.3);
+  cursor: pointer;
 }
 
 .temp-mode.temp-mode-active {
@@ -180,8 +181,21 @@ input:focus-visible {
   width: 100%;
 }
 
-.hours-info-graph {
-  width: 80%;
+.hours-info-mode > * {
+  border-bottom: 3px white;
+}
+
+.hours-info-mode > *:hover {
+  border-bottom: 3px solid rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.hours-info-mode > .hour-info-mode-active {
+  border-bottom: 3px solid black;
+}
+
+.hours-info-chart {
+  width: 100%;
   height: 200px;
   border: 1px solid;
   display: flex;

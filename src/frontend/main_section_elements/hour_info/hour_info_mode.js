@@ -4,24 +4,36 @@ import {
   showCloudGraph,
   showHumidityGraph,
   showTempGraph,
-} from './hour_info_graph';
+} from './hour_info_chart';
+import {
+  activateHourInfoModeElement,
+  deactivateHourInfoModeElements,
+} from './hour_info_mode_elements';
 
 const hoursInfoMode = document.querySelector('.hours-info-mode');
 
 hoursInfoMode.addEventListener('click', (e) => {
+  const hourInfoMode = e.target.dataset.hourInfoMode;
+
+  if (!hourInfoMode) return;
+
   const hours = getLastFetchedWeather().hours;
 
-  switch (e.target.className) {
-    case 'hours-temperature':
+  deactivateHourInfoModeElements();
+
+  switch (hourInfoMode) {
+    case 'temperature':
       showTempGraph(hours, getTempMode());
       break;
 
-    case 'hours-humidity':
+    case 'humidity':
       showHumidityGraph(hours);
       break;
 
-    case 'hours-clouds':
+    case 'cloud':
       showCloudGraph(hours);
       break;
   }
+
+  activateHourInfoModeElement(e.target.closest('li'));
 });

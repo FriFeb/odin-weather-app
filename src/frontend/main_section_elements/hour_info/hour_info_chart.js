@@ -1,18 +1,23 @@
 import { getLastFetchedWeather } from '../../../backend/weather_cache';
+import { showTime } from '../location/location_info';
 import { showWeatherInfo } from '../weather_info';
+import {
+  activateHourInfoModeElement,
+  deactivateHourInfoModeElements,
+} from './hour_info_mode_elements';
 
-const graph = document.querySelector('.hours-info-graph');
+const chart = document.querySelector('.hours-info-chart');
 let hourElements;
 
 function createHourElements(hours) {
-  graph.innerHTML = '';
+  chart.innerHTML = '';
 
   hours.forEach((_, index) => {
     const hourElement = document.createElement('div');
     hourElement.className = 'hour';
     hourElement.id = index;
 
-    graph.append(hourElement);
+    chart.append(hourElement);
   });
 
   hourElements = document.querySelectorAll('.hour');
@@ -41,14 +46,15 @@ function fillHourElements(hours, weatherType, tempMode) {
 function addHourWeatherInfoEvents(hours) {
   hourElements.forEach((hourElement) => {
     hourElement.addEventListener('mouseover', (e) => {
-      console.log('hourElement mouseover' + e.target);
       const hourIndex = e.target.id;
       showWeatherInfo(hours[hourIndex]);
+      showTime(hours[hourIndex].time);
     });
   });
 
-  graph.addEventListener('mouseout', (e) => {
+  chart.addEventListener('mouseout', () => {
     showWeatherInfo(getLastFetchedWeather().day);
+    showTime(getLastFetchedWeather().location.time);
   });
 }
 
@@ -56,6 +62,11 @@ export function showTempGraph(hours, tempMode) {
   createHourElements(hours);
   fillHourElements(hours, 'temp', tempMode);
   addHourWeatherInfoEvents(hours);
+
+  deactivateHourInfoModeElements();
+  activateHourInfoModeElement(
+    document.querySelector('[data-hour-info-mode="temperature"]')
+  );
 }
 
 export function showHumidityGraph(hours) {

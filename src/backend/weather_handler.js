@@ -38,6 +38,7 @@ function getRequiredHoursWeather(hoursWeather) {
       humidity: hour.humidity,
       cloud: hour.cloud,
       uv: hour.uv,
+      time: hour.time,
     };
   });
 }

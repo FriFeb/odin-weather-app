@@ -45,14 +45,16 @@ TODO:
 
     + add clear button to the input field
 
-    + add info to hours graph 
+    + add info to hours chart 
       + brainstorm how to show the data
       + show temp data
       + show humidity and cloud data
 
-    + add the ability to toggle between hour graphs
+    + add the ability to toggle between hour charts
 
-    + show hour weather info in main section based on hovered hour in graph 
+    + show hour weather info in main section based on hovered hour in chart 
+
+    + show new local time in main section based on hovered hour in chart 
 
     Styling: 
 
@@ -67,11 +69,8 @@ TODO:
       + local time
       + city location
       + temp mode selection
-      - hour graph
-        - hour labels
-        - hour bars
-        - hover effect
-      - hour info mode selected 
+      - use chart.js library to style hour chart
+      + hour info mode selection
       - animations to the main section ...
       - change environment based on temperature ...
 */

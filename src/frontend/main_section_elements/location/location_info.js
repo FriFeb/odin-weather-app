@@ -43,7 +43,7 @@ function showLocalDate(localDate) {
   text.innerHTML = localDate;
 }
 
-function showTime(timeString) {
+export function showTime(timeString) {
   const time = getSplittedTime(timeString);
 
   showLocalTime(time.localTime);
