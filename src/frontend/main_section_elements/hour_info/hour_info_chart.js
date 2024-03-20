@@ -1,10 +1,6 @@
 import { getLastFetchedWeather } from '../../../backend/weather_cache';
 import { showTime } from '../location/location_info';
 import { showWeatherInfo } from '../weather_info';
-import {
-  activateHourInfoModeElement,
-  deactivateHourInfoModeElements,
-} from './hour_info_mode_elements';
 
 const chart = document.querySelector('.hours-info-chart');
 let hourElements;
@@ -21,6 +17,21 @@ function createHourElements(hours) {
   });
 
   hourElements = document.querySelectorAll('.hour');
+}
+
+function addHourWeatherInfoEvents(hours) {
+  hourElements.forEach((hourElement) => {
+    hourElement.addEventListener('mouseover', (e) => {
+      const hourIndex = e.target.id;
+      showWeatherInfo(hours[hourIndex]);
+      showTime(hours[hourIndex].time);
+    });
+  });
+
+  chart.addEventListener('mouseout', () => {
+    showWeatherInfo(getLastFetchedWeather().day);
+    showTime(getLastFetchedWeather().location.time);
+  });
 }
 
 function fillHourElements(hours, weatherType, tempMode) {
@@ -43,36 +54,19 @@ function fillHourElements(hours, weatherType, tempMode) {
   });
 }
 
-function addHourWeatherInfoEvents(hours) {
-  hourElements.forEach((hourElement) => {
-    hourElement.addEventListener('mouseover', (e) => {
-      const hourIndex = e.target.id;
-      showWeatherInfo(hours[hourIndex]);
-      showTime(hours[hourIndex].time);
-    });
-  });
-
-  chart.addEventListener('mouseout', () => {
-    showWeatherInfo(getLastFetchedWeather().day);
-    showTime(getLastFetchedWeather().location.time);
-  });
-}
-
-export function showTempGraph(hours, tempMode) {
+export function initializeChartElements(hours) {
   createHourElements(hours);
-  fillHourElements(hours, 'temp', tempMode);
   addHourWeatherInfoEvents(hours);
-
-  deactivateHourInfoModeElements();
-  activateHourInfoModeElement(
-    document.querySelector('[data-hour-info-mode="temperature"]')
-  );
 }
 
-export function showHumidityGraph(hours) {
+export function showTempChart(hours, tempMode) {
+  fillHourElements(hours, 'temp', tempMode);
+}
+
+export function showHumidityChart(hours) {
   fillHourElements(hours, 'humidity');
 }
 
-export function showCloudGraph(hours) {
+export function showCloudChart(hours) {
   fillHourElements(hours, 'cloud');
 }

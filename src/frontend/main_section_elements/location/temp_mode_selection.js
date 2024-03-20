@@ -5,7 +5,7 @@ import {
   activateTempModeElement,
   deactivateTempModeElements,
 } from './temp_mode_elements';
-import { showTempGraph } from '../hour_info/hour_info_chart';
+import { showHourInfo } from '../hour_info/hour_info';
 
 const tempModeSelection = document.querySelector('.temperature-selection');
 
@@ -25,5 +25,5 @@ tempModeSelection.addEventListener('click', (e) => {
 
   const lastFetchedWeather = getLastFetchedWeather();
   showTemperature(lastFetchedWeather.day.temp, getTempMode());
-  showTempGraph(lastFetchedWeather.hours, getTempMode());
+  showHourInfo(lastFetchedWeather.hours, 'temperature');
 });
