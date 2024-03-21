@@ -3,8 +3,10 @@ import { getLastFetchedWeather } from '../../../backend/weather_cache';
 import { showTime } from '../location/location_info';
 import { showWeatherInfo } from '../weather_info';
 
+let chart;
+
 function showChart(hours, hoursData) {
-  new Chart(document.getElementById('chart'), {
+  chart = new Chart(document.getElementById('chart'), {
     type: 'line',
     data: {
       labels: hours.map((hour) => hour.time.split(' ')[1]),
@@ -57,9 +59,20 @@ export function showTempChart(hours, tempMode) {
       break;
   }
 
+  if (chart) chart.destroy();
   showChart(hours, hoursData);
 }
 
-export function showHumidityChart(hours) {}
+export function showHumidityChart(hours) {
+  const hoursData = hours.map((hour) => hour.humidity);
 
-export function showCloudChart(hours) {}
+  if (chart) chart.destroy();
+  showChart(hours, hoursData);
+}
+
+export function showCloudChart(hours) {
+  const hoursData = hours.map((hour) => hour.cloud);
+
+  if (chart) chart.destroy();
+  showChart(hours, hoursData);
+}
