@@ -1,72 +1,65 @@
+import Chart from 'chart.js/auto';
 import { getLastFetchedWeather } from '../../../backend/weather_cache';
 import { showTime } from '../location/location_info';
 import { showWeatherInfo } from '../weather_info';
 
-const chart = document.querySelector('.hours-info-chart');
-let hourElements;
+function showChart(hours, hoursData) {
+  new Chart(document.getElementById('chart'), {
+    type: 'line',
+    data: {
+      labels: hours.map((hour) => hour.time.split(' ')[1]),
+      datasets: [
+        {
+          data: hoursData,
+        },
+      ],
+    },
+    options: {
+      elements: {
+        point: {
+          pointRadius: 10,
+          hoverBorderWidth: 12,
+          hoverBorderColor: 'green',
+        },
+      },
+      plugins: {
+        legend: {
+          display: false,
+        },
+      },
+      onHover: (e, item) => {
+        if (!item.length) return;
+        const hourIndex = item[0].index;
+        showWeatherInfo(hours[hourIndex]);
+        showTime(hours[hourIndex].time);
+      },
 
-function createHourElements(hours) {
-  chart.innerHTML = '';
-
-  hours.forEach((_, index) => {
-    const hourElement = document.createElement('div');
-    hourElement.className = 'hour';
-    hourElement.id = index;
-
-    chart.append(hourElement);
+      /*
+      chart.addEventListener('mouseout', () => {
+        showWeatherInfo(getLastFetchedWeather().day);
+        showTime(getLastFetchedWeather().location.time);
+      });
+      */
+    },
   });
-
-  hourElements = document.querySelectorAll('.hour');
-}
-
-function addHourWeatherInfoEvents(hours) {
-  hourElements.forEach((hourElement) => {
-    hourElement.addEventListener('mouseover', (e) => {
-      const hourIndex = e.target.id;
-      showWeatherInfo(hours[hourIndex]);
-      showTime(hours[hourIndex].time);
-    });
-  });
-
-  chart.addEventListener('mouseout', () => {
-    showWeatherInfo(getLastFetchedWeather().day);
-    showTime(getLastFetchedWeather().location.time);
-  });
-}
-
-function fillHourElements(hours, weatherType, tempMode) {
-  hourElements.forEach((hourElement, index) => {
-    const hour = hours[index];
-    const hourWeather = hour[weatherType];
-
-    if (weatherType === 'temp') {
-      switch (tempMode) {
-        case '0':
-          hourElement.innerHTML = hourWeather.temp_C;
-          break;
-        case '1':
-          hourElement.innerHTML = hourWeather.temp_F;
-          break;
-      }
-    } else {
-      hourElement.innerHTML = hourWeather;
-    }
-  });
-}
-
-export function initializeChartElements(hours) {
-  createHourElements(hours);
-  addHourWeatherInfoEvents(hours);
 }
 
 export function showTempChart(hours, tempMode) {
-  fillHourElements(hours, 'temp', tempMode);
+  let hoursData;
+
+  switch (tempMode) {
+    case '0':
+      hoursData = hours.map((hour) => hour.temp.temp_C);
+      break;
+
+    case '1':
+      hoursData = hours.map((hour) => hour.temp.temp_F);
+      break;
+  }
+
+  showChart(hours, hoursData);
 }
 
-export function showHumidityChart(hours) {
-  fillHourElements(hours, 'humidity');
-}
+export function showHumidityChart(hours) {}
 
-export function showCloudChart(hours) {
-  fillHourElements(hours, 'cloud');
-}
+export function showCloudChart(hours) {}

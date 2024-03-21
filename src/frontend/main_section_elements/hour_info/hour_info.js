@@ -1,6 +1,5 @@
 import { getTempMode } from '../../../backend/temp_mode';
 import {
-  initializeChartElements,
   showCloudChart,
   showHumidityChart,
   showTempChart,
@@ -39,9 +38,4 @@ export function showHourInfo(
       showCloudChart(hours);
       break;
   }
-}
-
-export function showSearchFormDefaultHourInfo(hours) {
-  initializeChartElements(hours);
-  showHourInfo(hours, 'temperature');
 }
