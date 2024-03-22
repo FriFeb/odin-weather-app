@@ -5,6 +5,17 @@ import { showWeatherInfo } from '../weather_info';
 
 let chart;
 
+Chart.register({
+  id: 'chartDefaultWeather',
+  beforeEvent(chart, args, pluginOptions) {
+    const event = args.event;
+    if (event.type === 'mouseout') {
+      showWeatherInfo(getLastFetchedWeather().day);
+      showTime(getLastFetchedWeather().location.time);
+    }
+  },
+});
+
 function showChart(hours, hoursData) {
   chart = new Chart(document.getElementById('chart'), {
     type: 'line',
@@ -17,13 +28,16 @@ function showChart(hours, hoursData) {
       ],
     },
     options: {
-      elements: {
-        point: {
-          pointRadius: 10,
-          hoverBorderWidth: 12,
-          hoverBorderColor: 'green',
-        },
+      fill: true,
+      aspectRatio: 4,
+      interaction: {
+        intersect: false,
+        mode: 'nearest',
+        axis: 'x',
       },
+      pointRadius: 10,
+      hoverBorderWidth: 12,
+      hoverBorderColor: 'green',
       plugins: {
         legend: {
           display: false,
@@ -35,13 +49,6 @@ function showChart(hours, hoursData) {
         showWeatherInfo(hours[hourIndex]);
         showTime(hours[hourIndex].time);
       },
-
-      /*
-      chart.addEventListener('mouseout', () => {
-        showWeatherInfo(getLastFetchedWeather().day);
-        showTime(getLastFetchedWeather().location.time);
-      });
-      */
     },
   });
 }

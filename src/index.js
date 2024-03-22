@@ -56,6 +56,12 @@ TODO:
 
     + show new local time in main section based on hovered hour in chart 
 
+    + use chart.js library to make hour chart
+        + show temp chart
+        + show all the charts 
+        + show hour weather info when x axis is hovered
+        + show default weather info when mouse leaves the chart
+
     Styling: 
 
       + location input 
@@ -69,8 +75,11 @@ TODO:
       + local time
       + city location
       + temp mode selection
-      - use chart.js library to style hour chart
       + hour info mode selection
+      - chart.js
+        - brainstorm how should hour charts look like
+        - ...
+        - hour temp below and above 0 C 
       - animations to the main section ...
       - change environment based on temperature ...
 */

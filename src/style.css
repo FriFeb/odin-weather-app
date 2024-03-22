@@ -6,7 +6,7 @@
 }
 
 body {
-  padding: 3rem 10%;
+  padding: 2rem 10% 1rem 10%;
 }
 
 form {
@@ -64,20 +64,23 @@ input:focus-visible {
 .error-section,
 .loading-section {
   box-sizing: border-box;
-  height: calc(100vh - 10rem);
   display: none;
   align-items: center;
   justify-content: center;
+}
+
+.error-section,
+.loading-section {
+  height: calc(100vh - 10rem);
 }
 
 .main {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 4rem;
   padding: 3rem;
-  border: 1px solid;
-  border-radius: 1rem;
+  padding-bottom: 1rem;
   height: max-content;
 }
 
@@ -206,14 +209,6 @@ input:focus-visible {
 .hour {
   flex: 1;
   height: 100%;
-}
-
-.error-section {
-  box-sizing: border-box;
-  height: calc(100vh - 10rem);
-  display: none;
-  align-items: center;
-  justify-content: center;
 }
 
 .error {
