@@ -77,8 +77,14 @@ TODO:
       + temp mode selection
       + hour info mode selection
       - chart.js
-        - brainstorm how should hour charts look like
-        - ...
+        + brainstorm how should hour charts look like
+        + make hour temp chart smooth
+        + hide x axis grid lines
+        + point hover effect
+        + tooltip
+        + make hour humidity and cloud charts stepped
+        + make hour humidity and cloud charts to start with 0
+        + use bigger font 
         - hour temp below and above 0 C 
       - animations to the main section ...
       - change environment based on temperature ...
