@@ -61,6 +61,7 @@ TODO:
         + show all the charts 
         + show hour weather info when x axis is hovered
         + show default weather info when mouse leaves the chart
+        - optimize (refactor) chart creation process
 
     Styling: 
 
@@ -86,6 +87,8 @@ TODO:
         + make hour humidity and cloud charts to start with 0
         + use bigger font 
         - hour temp below and above 0 C 
+        - chart padding
+      + local date
       - animations to the main section ...
       - change environment based on temperature ...
 */

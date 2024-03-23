@@ -37,10 +37,15 @@ function showLocalTime(localTime) {
   text.innerHTML = localTime;
 }
 
+function getPrettyLocalDate(localDate) {
+  const splittedLocalDate = localDate.split('-');
+  return splittedLocalDate.reverse().join('.');
+}
+
 function showLocalDate(localDate) {
   const text = document.querySelector('.local-date');
 
-  text.innerHTML = localDate;
+  text.innerHTML = getPrettyLocalDate(localDate);
 }
 
 export function showTime(timeString) {
