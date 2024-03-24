@@ -1,21 +1,22 @@
 # Weather App
 
-A weather app that I created as a part of The Odin Project JavaScript curriculum. It allows you to check the weather in any location so you are always prepared for any situation :D.
+A weather app that I created as a part of The Odin Project JavaScript curriculum. It allows you to check the weather during the day in any location, so you are always prepared for any situation :D.
 
-### Functional Requirements
+### Features
 
-First MVP draft.
+1. Check out the current weather conditions in any city
+2. Get information about temperature, humidity, clouds and UV index
+3. Observe the weather change every hour of the day
+4. Toggle between different temperature modes
+5. Enjoy the design of the page
 
-1.  Get the data from API
+### What I learned
 
-    - create a function to fetch the data from API
-    - use a button to trigger that function
-    - allow user to enter the desired location
+It was a fascinating journey and during all this time I learned:
 
-2.  Render the data
-
-    - call the function to get the data in console
-    - show the data on the page
+- what asynchronous JS is and how to work with it
+- how to grab desired information from an API
+- any complex task is not as difficult as you think, especially if you break it down into smaller pieces _(frontend page design seemed abnormally tough to me, but this principle helped me to overcome it XD)_
 
 ### Technologies
 
@@ -24,3 +25,4 @@ First MVP draft.
 - JavaScript
 - Webpack
 - Eslint
+- Chart.js

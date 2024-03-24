@@ -3,6 +3,7 @@ import './frontend/search_form_elements/input';
 import './frontend/search_form';
 import './frontend/main_section_elements/location/temp_mode_selection';
 import './frontend/main_section_elements/hour_info/hour_info_mode';
+
 /* 
 TODO: 
 
@@ -17,6 +18,7 @@ TODO:
     + seize country and local time
 
     + request all required hour weather data
+
 
   Frontend:
   
@@ -57,38 +59,46 @@ TODO:
     + show new local time in main section based on hovered hour in chart 
 
     + use chart.js library to make hour chart
-        + show temp chart
-        + show all the charts 
-        + show hour weather info when x axis is hovered
-        + show default weather info when mouse leaves the chart
-        - optimize (refactor) chart creation process
+      + show temp chart
+      + show all the charts 
+      + show hour weather info when x axis is hovered
+      + show default weather info when mouse leaves the chart
+      - optimize (refactor) chart creation process
 
-    Styling: 
+    - enable eslint extension and refactor the code if needed
 
-      + location input 
-      + clear button in the input field
-      + search btn
-      + explanations to the day info boxes
-      + 'no city found' error
-      + main content in center
-      + error in center
-      + loading icon animation
-      + local time
-      + city location
-      + temp mode selection
-      + hour info mode selection
-      - chart.js
-        + brainstorm how should hour charts look like
-        + make hour temp chart smooth
-        + hide x axis grid lines
-        + point hover effect
-        + tooltip
-        + make hour humidity and cloud charts stepped
-        + make hour humidity and cloud charts to start with 0
-        + use bigger font 
-        - hour temp below and above 0 C 
-        - chart padding
-      + local date
-      - animations to the main section ...
-      - change environment based on temperature ...
+  Styling: 
+
+    + location input 
+    + clear button in the input field
+    + search btn
+    + explanations to the day info boxes
+    + 'no city found' error
+    + main content in center
+    + error in center
+    + loading icon animation
+    + local time
+    + city location
+    + temp mode selection
+    + hour info mode selection
+    - chart.js
+      + brainstorm how should hour charts look like
+      + make hour temp chart smooth
+      + hide x axis grid lines
+      + point hover effect
+      + tooltip
+      + make hour humidity and cloud charts stepped
+      + make hour humidity and cloud charts to start with 0
+      + use bigger font 
+      - hour temp below and above 0 C 
+      - chart padding
+    + local date
+    - animations to the main section ...
+    - change environment based on temperature ...
+
+
+  Docs:
+
+    + update README file
+
 */

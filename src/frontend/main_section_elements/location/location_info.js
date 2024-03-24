@@ -38,8 +38,7 @@ function showLocalTime(localTime) {
 }
 
 function getPrettyLocalDate(localDate) {
-  const splittedLocalDate = localDate.split('-');
-  return splittedLocalDate.reverse().join('.');
+  return localDate.split('-').reverse().join('.');
 }
 
 function showLocalDate(localDate) {
