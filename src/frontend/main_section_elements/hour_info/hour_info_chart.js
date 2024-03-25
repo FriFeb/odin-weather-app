@@ -1,4 +1,5 @@
 import Chart from 'chart.js/auto';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { getLastFetchedWeather } from '../../../backend/weather_cache';
 import { showTime } from '../location/location_info';
 import { showWeatherInfo } from '../weather_info';
@@ -6,6 +7,7 @@ import { showWeatherInfo } from '../weather_info';
 let chart;
 
 Chart.defaults.font.size = 20;
+Chart.register(ChartDataLabels);
 Chart.register({
   id: 'chartDefaultWeather',
   beforeEvent(chart, args, pluginOptions) {
@@ -18,8 +20,7 @@ Chart.register({
 });
 
 function pickColor(ctx) {
-  if (!ctx.parsed.y) debugger;
-  const y = ctx.parsed.y;
+  const y = ctx.p0.parsed.y;
   return y < 0 ? 'blue' : 'red';
 }
 
@@ -66,6 +67,9 @@ function showChart(hours, hoursData) {
           },
           min: 0,
           suggestedMax: 100,
+          ticks: {
+            display: false,
+          },
         },
       },
 
@@ -83,6 +87,16 @@ function showChart(hours, hoursData) {
           padding: 12,
           caretPadding: 15,
           caretSize: 12,
+        },
+        datalabels: {
+          font: {
+            weight: 'bold',
+          },
+          align: (ctx, i, s) => {
+            const index = ctx.dataIndex;
+            const temp = ctx.dataset.data;
+            return temp[index] < 0 ? 'bottom' : 'top';
+          },
         },
       },
 
@@ -104,8 +118,17 @@ function showTChart(hours, hoursData) {
       datasets: [
         {
           data: hoursData,
+          segment: {
+            borderColor: pickColor,
+          },
+          spanGaps: true,
         },
       ],
+      // datalabels: {
+      //   align: 'end',
+      //   offset: 10,
+      //   // anchor: 'end',
+      // },
     },
     options: {
       fill: true,
@@ -113,8 +136,24 @@ function showTChart(hours, hoursData) {
       aspectRatio: 4,
       pointRadius: 0,
       pointHoverRadius: 15,
-      borderColor: 'rgba(54, 162, 235, 1)',
-      backgroundColor: 'rgba(54, 162, 235, 0.3)',
+      // borderColor: 'rgba(54, 162, 235, 1)',
+      // backgroundColor: 'rgba(54, 162, 235, 0.3)',
+
+      // elements: {
+      //   line: {
+      //     borderColor: (ctx) => {
+      //       return ctx.raw < 0
+      //         ? 'rgba(54, 162, 235, 0.3)'
+      //         : 'rgba(240, 160, 50, 0.3)';
+      //     },
+      //     backgroundColor: (ctx) => {
+      //       return ctx.raw < 0
+      //         ? 'rgba(54, 162, 235, 0.3)'
+      //         : 'rgba(240, 160, 50, 0.3)';
+      //     },
+      //   },
+      // },
+      // backgroundColor: 'rgba(54, 162, 235, 0.3)',
 
       // borderColor: pickColor,
       // elements: {
@@ -129,15 +168,16 @@ function showTChart(hours, hoursData) {
             display: false,
           },
           ticks: {
+            // padding: 60,
             font: {
               size: 16,
             },
+            z: 1,
           },
         },
         y: {
-          grid: {
-            lineWidth: 1,
-            color: 'rgba(200, 200, 200, 0.8)',
+          ticks: {
+            display: false,
           },
         },
       },
@@ -156,6 +196,16 @@ function showTChart(hours, hoursData) {
           padding: 12,
           caretPadding: 15,
           caretSize: 12,
+        },
+        datalabels: {
+          font: {
+            weight: 'bold',
+          },
+          align: (ctx, i, s) => {
+            const index = ctx.dataIndex;
+            const temp = ctx.dataset.data;
+            return temp[index] < 0 ? 'bottom' : 'top';
+          },
         },
       },
 

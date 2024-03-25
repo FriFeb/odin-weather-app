@@ -90,6 +90,7 @@ TODO:
       + make hour humidity and cloud charts stepped
       + make hour humidity and cloud charts to start with 0
       + use bigger font 
+      + y axis labels on the chart
       - hour temp below and above 0 C 
       - chart padding
     + local date
