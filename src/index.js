@@ -86,7 +86,8 @@ TODO:
       + make hour temp chart smooth
       + hide x axis grid lines
       + point hover effect
-      + tooltip
+      + tooltip alignment
+      + tooltip box color
       + make hour humidity and cloud charts stepped
       + make hour humidity and cloud charts to start with 0
       + use bigger font 

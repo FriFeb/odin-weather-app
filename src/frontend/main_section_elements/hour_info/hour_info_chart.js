@@ -34,7 +34,8 @@ function pickColor(environment, alpha) {
 }
 
 function pickEnvironmentColor(ctx, alpha) {
-  const y = ctx.p0.parsed.y;
+  let y = ctx.p0?.parsed.y;
+  if (!y) y = ctx.parsed.y;
 
   switch (getTempMode()) {
     case '0':
@@ -148,6 +149,10 @@ function showTChart(hours, hoursData) {
       aspectRatio: 4,
       pointRadius: 0,
       pointHoverRadius: 15,
+      pointBackgroundColor: (context) => pickEnvironmentColor(context, 1),
+      pointBorderColor: (context) => pickEnvironmentColor(context, 1),
+
+      // pointBackgroundColor: 'red',
 
       scales: {
         x: {
@@ -184,14 +189,36 @@ function showTChart(hours, hoursData) {
         },
         tooltip: {
           padding: 12,
-          caretPadding: 15,
           caretSize: 12,
+          boxPadding: 3,
+          caretPadding: 15,
+          bodyAlign: 'center',
+          titleAlign: 'center',
+          callbacks: {
+            label: function (context) {
+              let label = context.parsed.y || '';
+
+              if (label) {
+                switch (getTempMode()) {
+                  case '0':
+                    label += ' °C';
+                    break;
+
+                  case '1':
+                    label += ' °F';
+                    break;
+                }
+              }
+
+              return label;
+            },
+          },
         },
         datalabels: {
           font: {
             weight: 'bold',
           },
-          align: (ctx, i, s) => {
+          align: (ctx) => {
             const index = ctx.dataIndex;
             const temp = ctx.dataset.data;
             return temp[index] < 0 ? 'bottom' : 'top';
