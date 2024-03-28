@@ -88,7 +88,7 @@ TODO:
       + point hover effect
       + tooltip alignment
       + tooltip box color
-      + make hour humidity and cloud charts stepped
+      + make hour humidity and cloud charts as bars
       + make hour humidity and cloud charts to start with 0
       + use bigger font 
       + y axis labels on the chart

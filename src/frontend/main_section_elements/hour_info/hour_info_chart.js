@@ -48,7 +48,7 @@ function pickEnvironmentColor(ctx, alpha) {
 
 function showChart(hours, hoursData) {
   chart = new Chart(document.getElementById('chart'), {
-    type: 'line',
+    type: 'bar',
     data: {
       labels: hours.map((hour) => hour.time.split(' ')[1]),
       datasets: [
@@ -58,13 +58,16 @@ function showChart(hours, hoursData) {
       ],
     },
     options: {
-      fill: true,
-      stepped: 'middle',
       aspectRatio: 4,
       pointRadius: 0,
       pointHoverRadius: 15,
       borderColor: 'rgba(54, 162, 235, 1)',
-      backgroundColor: 'rgba(54, 162, 235, 0.3)',
+      backgroundColor: 'rgba(54, 162, 235, 0.2)',
+      categoryPercentage: 1.0,
+      barPercentage: 1.0,
+      borderWidth: {
+        top: 4,
+      },
 
       scales: {
         x: {
@@ -78,12 +81,11 @@ function showChart(hours, hoursData) {
           },
         },
         y: {
-          grid: {
-            lineWidth: 1,
-            color: 'rgba(200, 200, 200, 0.8)',
-          },
           min: 0,
           suggestedMax: 100,
+          grid: {
+            display: false,
+          },
           ticks: {
             display: false,
           },
@@ -102,18 +104,35 @@ function showChart(hours, hoursData) {
         },
         tooltip: {
           padding: 12,
-          caretPadding: 15,
           caretSize: 12,
+          boxPadding: 3,
+          caretPadding: 15,
+          bodyAlign: 'center',
+          titleAlign: 'center',
+          borderWidth: 0,
+          callbacks: {
+            labelColor: (context) => {
+              return {
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 0,
+              };
+            },
+            label: function (context) {
+              let label = context.parsed.y || '';
+
+              return `${label} %`;
+            },
+          },
         },
         datalabels: {
           font: {
             weight: 'bold',
           },
-          align: (ctx, i, s) => {
-            const index = ctx.dataIndex;
-            const temp = ctx.dataset.data;
-            return temp[index] < 0 ? 'bottom' : 'top';
-          },
+          align: 'top',
+          anchor: 'end',
+          offset: 2,
+          // formatter: (value) => `${value} %`,
         },
       },
 
