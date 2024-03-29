@@ -178,6 +178,9 @@ function showTChart(hours, hoursData) {
       pointBackgroundColor: (context) => pickEnvironmentColor(context, 1),
       pointBorderColor: (context) => pickEnvironmentColor(context, 1),
 
+      responsive: true,
+      maintainAspectRatio: false,
+
       layout: {
         padding: {
           top: 40,

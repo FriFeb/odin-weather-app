@@ -81,7 +81,7 @@ TODO:
     + city location
     + temp mode selection
     + hour info mode selection
-    - chart.js
+    + chart.js
       + brainstorm how should hour charts look like
       + make hour temp chart smooth
       + hide x axis grid lines
@@ -94,8 +94,8 @@ TODO:
       + y axis labels on the chart
       + hour temp below and above 0 C 
       + chart padding
-      - pick proper chart size
-      - make the chart responsive
+      + pick proper chart size
+      + make the chart responsive
     + local date
     - animations to the main section ...
     - change environment based on temperature ...
