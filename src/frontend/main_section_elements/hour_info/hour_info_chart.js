@@ -60,13 +60,20 @@ function showChart(hours, hoursData) {
     options: {
       aspectRatio: 4,
       pointRadius: 0,
-      pointHoverRadius: 15,
       borderColor: 'rgba(54, 162, 235, 1)',
       backgroundColor: 'rgba(54, 162, 235, 0.2)',
       categoryPercentage: 1.0,
       barPercentage: 1.0,
       borderWidth: {
         top: 4,
+      },
+      responsive: true,
+      maintainAspectRatio: false,
+
+      layout: {
+        padding: {
+          top: 40,
+        },
       },
 
       scales: {
@@ -78,6 +85,7 @@ function showChart(hours, hoursData) {
             font: {
               size: 16,
             },
+            padding: 10,
           },
         },
         y: {
@@ -109,7 +117,6 @@ function showChart(hours, hoursData) {
           caretPadding: 15,
           bodyAlign: 'center',
           titleAlign: 'center',
-          borderWidth: 0,
           callbacks: {
             labelColor: (context) => {
               return {
@@ -171,7 +178,11 @@ function showTChart(hours, hoursData) {
       pointBackgroundColor: (context) => pickEnvironmentColor(context, 1),
       pointBorderColor: (context) => pickEnvironmentColor(context, 1),
 
-      // pointBackgroundColor: 'red',
+      layout: {
+        padding: {
+          top: 40,
+        },
+      },
 
       scales: {
         x: {
@@ -179,11 +190,10 @@ function showTChart(hours, hoursData) {
             display: false,
           },
           ticks: {
-            // padding: 60,
             font: {
               size: 16,
             },
-            z: 1,
+            padding: 10,
           },
         },
         y: {

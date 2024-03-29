@@ -93,7 +93,9 @@ TODO:
       + use bigger font 
       + y axis labels on the chart
       + hour temp below and above 0 C 
-      - chart padding
+      + chart padding
+      - pick proper chart size
+      - make the chart responsive
     + local date
     - animations to the main section ...
     - change environment based on temperature ...
@@ -102,5 +104,6 @@ TODO:
   Docs:
 
     + update README file
+    - the power of small steps
 
 */

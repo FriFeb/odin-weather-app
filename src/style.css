@@ -6,17 +6,22 @@
 }
 
 body {
-  padding: 2rem 10% 1rem 10%;
+  padding: 1rem 10% 0 10%;
+  height: calc(100vh - 1rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 form {
   display: flex;
   align-items: center;
   width: max-content;
-  margin: auto;
   gap: 1rem;
   position: relative;
   z-index: 1;
+  margin-top: 1rem;
+  transition: all 0.2s;
 }
 
 input {
@@ -25,7 +30,7 @@ input {
   border-bottom: 3px solid grey;
   outline: none;
   font-size: 1rem;
-  transition: all 0.15s;
+  transition: all 0.2s;
 }
 
 input:hover,
@@ -63,10 +68,16 @@ input:focus-visible {
 .main-section,
 .error-section,
 .loading-section {
+  width: 100%;
   box-sizing: border-box;
   display: none;
   align-items: center;
   justify-content: center;
+}
+
+.main-section {
+  flex: 1;
+  flex-direction: column;
 }
 
 .error-section,
@@ -76,11 +87,12 @@ input:focus-visible {
 
 .main {
   flex: 1;
+  width: calc(100% - 6rem);
   display: flex;
   flex-direction: column;
-  gap: 4rem;
+  gap: 5rem;
   padding: 3rem;
-  padding-bottom: 1rem;
+  padding-bottom: 0;
   height: max-content;
 }
 
@@ -171,6 +183,7 @@ input:focus-visible {
 }
 
 .hours-info {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -198,16 +211,16 @@ input:focus-visible {
 }
 
 .hours-info-chart {
+  flex: 1;
+
   width: 100%;
-  /* height: 200px; */
-  border: 1px solid;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  /* height: 20%; */
+  /* position: relative; */
+  /* border: 1px solid; */
 }
 
-.hour {
-  flex: 1;
+#chart {
+  width: 100%;
   height: 100%;
 }
 
