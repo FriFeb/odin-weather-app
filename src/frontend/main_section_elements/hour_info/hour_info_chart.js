@@ -1,52 +1,15 @@
 import Chart from 'chart.js/auto';
-import ChartDataLabels from 'chartjs-plugin-datalabels';
-import { getLastFetchedWeather } from '../../../backend/weather_cache';
 import { showTime } from '../location/location_info';
 import { showWeatherInfo } from '../weather_info';
 import { getTempMode } from '../../../backend/temp_mode';
+import {
+  commonChartOptions,
+  pickTempModeEnvironmentColor,
+} from './hour_info_chart_utils';
 
 let chart;
 
-Chart.defaults.font.size = 20;
-Chart.register(ChartDataLabels);
-Chart.register({
-  id: 'chartDefaultWeather',
-  beforeEvent(chart, args) {
-    const event = args.event;
-    if (event.type === 'mouseout') {
-      showWeatherInfo(getLastFetchedWeather().day);
-      showTime(getLastFetchedWeather().location.time);
-    }
-  },
-});
-
-function pickColor(environment, alpha) {
-  const blue = `rgba(54, 162, 235, ${alpha})`;
-  const yellow = `rgba(255, 205, 86, ${alpha})`;
-
-  switch (environment) {
-    case 'cold':
-      return blue;
-
-    case 'warm':
-      return yellow;
-  }
-}
-
-function pickEnvironmentColor(ctx, alpha) {
-  let y = ctx.p0?.parsed.y;
-  if (!y) y = ctx.parsed.y;
-
-  switch (getTempMode()) {
-    case '0':
-      return y < 0 ? pickColor('cold', alpha) : pickColor('warm', alpha);
-
-    case '1':
-      return y < 32 ? pickColor('cold', alpha) : pickColor('warm', alpha);
-  }
-}
-
-function showChart(hours, hoursData) {
+function showBarChart(hours, hoursData) {
   chart = new Chart(document.getElementById('chart'), {
     type: 'bar',
     data: {
@@ -57,103 +20,58 @@ function showChart(hours, hoursData) {
         },
       ],
     },
-    options: {
-      aspectRatio: 4,
-      pointRadius: 0,
-      borderColor: 'rgba(54, 162, 235, 1)',
-      backgroundColor: 'rgba(54, 162, 235, 0.2)',
-      categoryPercentage: 1.0,
-      barPercentage: 1.0,
-      borderWidth: {
-        top: 4,
-      },
-      responsive: true,
-      maintainAspectRatio: false,
+    options: Object.assign(
+      {
+        categoryPercentage: 1.0,
+        barPercentage: 1.0,
 
-      layout: {
-        padding: {
-          top: 40,
+        borderWidth: {
+          top: 4,
         },
-      },
 
-      scales: {
-        x: {
-          grid: {
-            display: false,
-          },
-          ticks: {
-            font: {
-              size: 16,
-            },
-            padding: 10,
+        hoverBorderWidth: {
+          top: 8,
+        },
+
+        scales: {
+          y: {
+            min: 0,
+            suggestedMax: 100,
           },
         },
-        y: {
-          min: 0,
-          suggestedMax: 100,
-          grid: {
-            display: false,
-          },
-          ticks: {
-            display: false,
-          },
-        },
-      },
 
-      interaction: {
-        intersect: false,
-        mode: 'nearest',
-        axis: 'x',
-      },
+        plugins: {
+          tooltip: {
+            callbacks: {
+              labelColor: (context) => {
+                return {
+                  backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                  borderColor: 'rgba(54, 162, 235, 1)',
+                  borderWidth: 0,
+                };
+              },
+              label: function (context) {
+                let label = context.parsed.y || '';
 
-      plugins: {
-        legend: {
-          display: false,
-        },
-        tooltip: {
-          padding: 12,
-          caretSize: 12,
-          boxPadding: 3,
-          caretPadding: 15,
-          bodyAlign: 'center',
-          titleAlign: 'center',
-          callbacks: {
-            labelColor: (context) => {
-              return {
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 0,
-              };
-            },
-            label: function (context) {
-              let label = context.parsed.y || '';
-
-              return `${label} %`;
+                return `${label} %`;
+              },
             },
           },
         },
-        datalabels: {
-          font: {
-            weight: 'bold',
-          },
-          align: 'top',
-          anchor: 'end',
-          offset: 2,
-          // formatter: (value) => `${value} %`,
+
+        onHover: (e, item) => {
+          if (!item.length) return;
+          const hourIndex = item[0].index;
+          showWeatherInfo(hours[hourIndex]);
+          showTime(hours[hourIndex].time);
         },
       },
-
-      onHover: (e, item) => {
-        if (!item.length) return;
-        const hourIndex = item[0].index;
-        showWeatherInfo(hours[hourIndex]);
-        showTime(hours[hourIndex].time);
-      },
-    },
+      commonChartOptions
+    ),
   });
 }
 
-function showTChart(hours, hoursData) {
+function showLineChart(hours, hoursData) {
   chart = new Chart(document.getElementById('chart'), {
     type: 'line',
     data: {
@@ -162,109 +80,62 @@ function showTChart(hours, hoursData) {
         {
           data: hoursData,
           segment: {
-            borderColor: (context) => pickEnvironmentColor(context, 1),
-            backgroundColor: (context) => pickEnvironmentColor(context, 0.3),
+            borderColor: (context) => pickTempModeEnvironmentColor(context, 1),
+            backgroundColor: (context) =>
+              pickTempModeEnvironmentColor(context, 0.2),
           },
           spanGaps: true,
         },
       ],
     },
-    options: {
-      fill: true,
-      tension: 0.5,
-      aspectRatio: 4,
-      pointRadius: 0,
-      pointHoverRadius: 15,
-      pointBackgroundColor: (context) => pickEnvironmentColor(context, 1),
-      pointBorderColor: (context) => pickEnvironmentColor(context, 1),
+    options: Object.assign(
+      {
+        fill: true,
+        tension: 0.5,
+        pointRadius: 0,
+        pointHoverRadius: 15,
+        pointBackgroundColor: (context) =>
+          pickTempModeEnvironmentColor(context, 1),
+        pointBorderColor: (context) => pickTempModeEnvironmentColor(context, 1),
 
-      responsive: true,
-      maintainAspectRatio: false,
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: function (context) {
+                let label = context.parsed.y || '';
 
-      layout: {
-        padding: {
-          top: 40,
-        },
-      },
+                if (label) {
+                  switch (getTempMode()) {
+                    case '0':
+                      label += ' °C';
+                      break;
 
-      scales: {
-        x: {
-          grid: {
-            display: false,
-          },
-          ticks: {
-            font: {
-              size: 16,
-            },
-            padding: 10,
-          },
-        },
-        y: {
-          grid: {
-            display: false,
-          },
-          ticks: {
-            display: false,
-          },
-        },
-      },
-
-      interaction: {
-        intersect: false,
-        mode: 'nearest',
-        axis: 'x',
-      },
-
-      plugins: {
-        legend: {
-          display: false,
-        },
-        tooltip: {
-          padding: 12,
-          caretSize: 12,
-          boxPadding: 3,
-          caretPadding: 15,
-          bodyAlign: 'center',
-          titleAlign: 'center',
-          callbacks: {
-            label: function (context) {
-              let label = context.parsed.y || '';
-
-              if (label) {
-                switch (getTempMode()) {
-                  case '0':
-                    label += ' °C';
-                    break;
-
-                  case '1':
-                    label += ' °F';
-                    break;
+                    case '1':
+                      label += ' °F';
+                      break;
+                  }
                 }
-              }
 
-              return label;
+                return label;
+              },
+            },
+          },
+          datalabels: {
+            align: (ctx) => {
+              const index = ctx.dataIndex;
+              const temp = ctx.dataset.data;
+              return temp[index] < 0 ? 'start' : 'end';
+            },
+            anchor: (ctx) => {
+              const index = ctx.dataIndex;
+              const temp = ctx.dataset.data;
+              return temp[index] < 0 ? 'start' : 'end';
             },
           },
         },
-        datalabels: {
-          font: {
-            weight: 'bold',
-          },
-          align: (ctx) => {
-            const index = ctx.dataIndex;
-            const temp = ctx.dataset.data;
-            return temp[index] < 0 ? 'bottom' : 'top';
-          },
-        },
       },
-
-      onHover: (e, item) => {
-        if (!item.length) return;
-        const hourIndex = item[0].index;
-        showWeatherInfo(hours[hourIndex]);
-        showTime(hours[hourIndex].time);
-      },
-    },
+      commonChartOptions
+    ),
   });
 }
 
@@ -282,19 +153,19 @@ export function showTempChart(hours, tempMode) {
   }
 
   if (chart) chart.destroy();
-  showTChart(hours, hoursData);
+  showLineChart(hours, hoursData);
 }
 
 export function showHumidityChart(hours) {
   const hoursData = hours.map((hour) => hour.humidity);
 
   if (chart) chart.destroy();
-  showChart(hours, hoursData);
+  showBarChart(hours, hoursData);
 }
 
 export function showCloudChart(hours) {
   const hoursData = hours.map((hour) => hour.cloud);
 
   if (chart) chart.destroy();
-  showChart(hours, hoursData);
+  showBarChart(hours, hoursData);
 }
