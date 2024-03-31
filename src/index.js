@@ -67,6 +67,7 @@ TODO:
 
     - enable eslint extension and refactor the code if needed
 
+
   Styling: 
 
     + location input 
@@ -97,10 +98,11 @@ TODO:
       + pick proper chart size
       + make the chart responsive
     + local date
+    - uv index chart ...
     - animations to the main section ...
     - change environment based on temperature ...
 
-
+    
   Docs:
 
     + update README file

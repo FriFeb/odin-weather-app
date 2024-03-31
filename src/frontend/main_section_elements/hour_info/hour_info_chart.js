@@ -20,54 +20,70 @@ function showBarChart(hours, hoursData) {
         },
       ],
     },
-    options: Object.assign(
-      {
-        categoryPercentage: 1.0,
-        barPercentage: 1.0,
+    // commonChartOptions should go before our custom options obj
+    // and as we do not want to override it, we use an empty obj first
+    options: Object.assign({}, commonChartOptions, {
+      categoryPercentage: 1.0,
+      barPercentage: 1.0,
 
-        borderWidth: {
-          top: 4,
-        },
+      borderWidth: {
+        top: 4,
+      },
 
-        hoverBorderWidth: {
-          top: 8,
-        },
+      hoverBorderWidth: {
+        top: 6,
+      },
 
-        scales: {
-          y: {
-            min: 0,
-            suggestedMax: 100,
+      scales: {
+        x: {
+          grid: {
+            display: false,
+          },
+          ticks: {
+            font: {
+              size: 16,
+            },
+            padding: 10,
           },
         },
+        y: {
+          min: 0,
+          suggestedMax: 100,
+          grid: {
+            display: false,
+          },
+          ticks: {
+            display: false,
+          },
+        },
+      },
 
-        plugins: {
-          tooltip: {
-            callbacks: {
-              labelColor: (context) => {
-                return {
-                  backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                  borderColor: 'rgba(54, 162, 235, 1)',
-                  borderWidth: 0,
-                };
-              },
-              label: function (context) {
-                let label = context.parsed.y || '';
+      plugins: {
+        tooltip: {
+          callbacks: {
+            labelColor: (context) => {
+              return {
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 0,
+              };
+            },
+            label: function (context) {
+              let label = context.parsed.y || '';
 
-                return `${label} %`;
-              },
+              return `${label} %`;
             },
           },
         },
-
-        onHover: (e, item) => {
-          if (!item.length) return;
-          const hourIndex = item[0].index;
-          showWeatherInfo(hours[hourIndex]);
-          showTime(hours[hourIndex].time);
-        },
       },
-      commonChartOptions
-    ),
+
+      onHover: (e, item) => {
+        if (!item.length) return;
+        const hourIndex = item[0].index;
+        showWeatherInfo(hours[hourIndex]);
+        showTime(hours[hourIndex].time);
+      },
+    }),
   });
 }
 
@@ -88,54 +104,108 @@ function showLineChart(hours, hoursData) {
         },
       ],
     },
-    options: Object.assign(
-      {
-        fill: true,
-        tension: 0.5,
-        pointRadius: 0,
-        pointHoverRadius: 15,
-        pointBackgroundColor: (context) =>
-          pickTempModeEnvironmentColor(context, 1),
-        pointBorderColor: (context) => pickTempModeEnvironmentColor(context, 1),
+    options: Object.assign({}, commonChartOptions, {
+      fill: true,
+      tension: 0.5,
+      pointRadius: 1,
+      pointHoverRadius: 15,
+      pointBackgroundColor: (context) =>
+        pickTempModeEnvironmentColor(context, 1),
+      pointBorderColor: (context) => pickTempModeEnvironmentColor(context, 1),
 
-        plugins: {
-          tooltip: {
-            callbacks: {
-              label: function (context) {
-                let label = context.parsed.y || '';
-
-                if (label) {
-                  switch (getTempMode()) {
-                    case '0':
-                      label += ' °C';
-                      break;
-
-                    case '1':
-                      label += ' °F';
-                      break;
-                  }
-                }
-
-                return label;
-              },
-            },
+      scales: {
+        x: {
+          grid: {
+            display: false,
           },
-          datalabels: {
-            align: (ctx) => {
-              const index = ctx.dataIndex;
-              const temp = ctx.dataset.data;
-              return temp[index] < 0 ? 'start' : 'end';
+          ticks: {
+            font: {
+              size: 16,
             },
-            anchor: (ctx) => {
-              const index = ctx.dataIndex;
-              const temp = ctx.dataset.data;
-              return temp[index] < 0 ? 'start' : 'end';
-            },
+            padding: 10,
+          },
+        },
+        y: {
+          // Setting min value below the lowest hoursData value
+          // to make sure that the temperature values below 0 C
+          // do not overlap with ticks labels
+          min: (context) => {
+            // need to copy hoursData to not sort the original array
+            const hoursDataCopy = hoursData.map((el) => el);
+            const sortedHoursData = hoursDataCopy.sort((a, b) => a - b);
+            switch (getTempMode()) {
+              case '0':
+                return sortedHoursData[0] < 0 ? sortedHoursData[0] - 2 : null;
+
+              case '1':
+                return sortedHoursData[0] < 32 ? sortedHoursData[0] - 4 : null;
+            }
+          },
+          grid: {
+            display: false,
+          },
+          ticks: {
+            display: false,
           },
         },
       },
-      commonChartOptions
-    ),
+
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function (context) {
+              let label = context.parsed.y;
+
+              if (isNaN(label)) return;
+
+              switch (getTempMode()) {
+                case '0':
+                  label += ' °C';
+                  break;
+
+                case '1':
+                  label += ' °F';
+                  break;
+              }
+
+              return label;
+            },
+          },
+        },
+        datalabels: {
+          align: (ctx) => {
+            const index = ctx.dataIndex;
+            const temp = ctx.dataset.data;
+
+            switch (getTempMode()) {
+              case '0':
+                return temp[index] < 0 ? 'start' : 'end';
+
+              case '1':
+                return temp[index] < 32 ? 'start' : 'end';
+            }
+          },
+          anchor: (ctx) => {
+            const index = ctx.dataIndex;
+            const temp = ctx.dataset.data;
+            switch (getTempMode()) {
+              case '0':
+                return temp[index] < 0 ? 'start' : 'end';
+
+              case '1':
+                return temp[index] < 32 ? 'start' : 'end';
+            }
+          },
+        },
+      },
+
+      onHover: (e, item) => {
+        if (!item.length) return;
+        const hourIndex = item[0].index;
+        showWeatherInfo(hours[hourIndex]);
+        showTime(hours[hourIndex].time);
+      },
+    }),
   });
 }
 
