@@ -17,6 +17,7 @@ export function showTemperature(temperature, tempMode) {
       break;
 
     case '1':
+    default:
       text.innerHTML = `${temperature.temp_F} °F`;
       break;
   }

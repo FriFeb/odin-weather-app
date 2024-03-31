@@ -1,4 +1,4 @@
-import { getRequiredWeather } from './weather_handler';
+import getRequiredWeather from './weather_handler';
 
 const weatherCache = {};
 let lastFetchedLocation;

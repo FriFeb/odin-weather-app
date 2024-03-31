@@ -8,7 +8,7 @@ import {
   showErrorMessage,
   showErrorSection,
 } from './sections/error_section';
-import { changeMargin } from './sections/form';
+import changeMargin from './sections/form';
 
 export function showLoading() {
   hideErrorSection();

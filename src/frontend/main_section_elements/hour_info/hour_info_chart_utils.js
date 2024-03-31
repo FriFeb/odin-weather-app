@@ -5,9 +5,18 @@ import { getTempMode } from '../../../backend/temp_mode';
 import { showTime } from '../location/location_info';
 import { showWeatherInfo } from '../weather_info';
 
-Chart.register(ChartDataLabels);
-
 Chart.defaults.font.size = 20;
+Chart.register(ChartDataLabels);
+Chart.register({
+  id: 'defaultWeatherInfo',
+  beforeEvent(chart, args) {
+    const { event } = args;
+    if (event.type === 'mouseout') {
+      showWeatherInfo(getLastFetchedWeather().day);
+      showTime(getLastFetchedWeather().location.time);
+    }
+  },
+});
 Chart.defaults.set('plugins', {
   legend: {
     display: false,
@@ -30,14 +39,6 @@ Chart.defaults.set('plugins', {
     bodyAlign: 'center',
     titleAlign: 'center',
   },
-
-  beforeEvent(chart, args) {
-    const event = args.event;
-    if (event.type === 'mouseout') {
-      showWeatherInfo(getLastFetchedWeather().day);
-      showTime(getLastFetchedWeather().location.time);
-    }
-  },
 });
 
 function pickEnvironmentColor(environment, alpha) {
@@ -49,13 +50,14 @@ function pickEnvironmentColor(environment, alpha) {
       return cold;
 
     case 'warm':
+    default:
       return warm;
   }
 }
 
 export function pickTempModeEnvironmentColor(ctx, alpha) {
   let y = ctx.p0?.parsed.y;
-  if (isNaN(y)) y = ctx.parsed.y;
+  if (!Number.isFinite(y)) y = ctx.parsed.y;
 
   switch (getTempMode()) {
     case '0':
@@ -64,6 +66,7 @@ export function pickTempModeEnvironmentColor(ctx, alpha) {
         : pickEnvironmentColor('warm', alpha);
 
     case '1':
+    default:
       return y < 32
         ? pickEnvironmentColor('cold', alpha)
         : pickEnvironmentColor('warm', alpha);

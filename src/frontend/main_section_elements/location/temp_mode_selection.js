@@ -5,7 +5,7 @@ import {
   activateTempModeElement,
   deactivateTempModeElements,
 } from './temp_mode_elements';
-import { showHourInfo } from '../hour_info/hour_info';
+import showHourInfo from '../hour_info/hour_info';
 
 const tempModeSelection = document.querySelector('.temperature-selection');
 

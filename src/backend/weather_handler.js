@@ -1,4 +1,4 @@
-import { getApiResponseWeather } from './response';
+import getApiResponseWeather from './response';
 
 function getRequiredLocation(location) {
   return {
@@ -25,25 +25,23 @@ function getRequiredDayWeather(dayWeather) {
 }
 
 function getRequiredHoursWeather(hoursWeather) {
-  return hoursWeather.map((hour) => {
-    return {
-      condition: {
-        text: hour.condition.text,
-        icon: hour.condition.icon,
-      },
-      temp: {
-        temp_C: hour.temp_c,
-        temp_F: hour.temp_f,
-      },
-      humidity: hour.humidity,
-      cloud: hour.cloud,
-      uv: hour.uv,
-      time: hour.time,
-    };
-  });
+  return hoursWeather.map((hour) => ({
+    condition: {
+      text: hour.condition.text,
+      icon: hour.condition.icon,
+    },
+    temp: {
+      temp_C: hour.temp_c,
+      temp_F: hour.temp_f,
+    },
+    humidity: hour.humidity,
+    cloud: hour.cloud,
+    uv: hour.uv,
+    time: hour.time,
+  }));
 }
 
-export async function getRequiredWeather(location) {
+export default async function getRequiredWeather(location) {
   const weather = await getApiResponseWeather('forecast.json', location);
 
   const forecast = weather.forecast.forecastday[0];

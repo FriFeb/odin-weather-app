@@ -18,7 +18,7 @@ function toggleHourInfoModeElement(hourInfoModeElement) {
   activateHourInfoModeElement(hourInfoModeElement);
 }
 
-export function showHourInfo(
+export default function showHourInfo(
   hours,
   hourInfoMode,
   hourInfoModeElement = getDefaultHourInfoModeElement()
@@ -35,6 +35,7 @@ export function showHourInfo(
       break;
 
     case 'cloud':
+    default:
       showCloudChart(hours);
       break;
   }

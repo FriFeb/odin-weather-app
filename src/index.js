@@ -65,7 +65,7 @@ TODO:
       + show default weather info when mouse leaves the chart
       + optimize (refactor) chart creation process
 
-    - enable eslint extension and refactor the code if needed
+    + enable eslint extension and refactor the code if needed
 
 
   Styling: 
@@ -110,3 +110,5 @@ TODO:
     - the power of small steps
 
 */
+
+// need to avoid switch statements in future, it's really bad practice ...

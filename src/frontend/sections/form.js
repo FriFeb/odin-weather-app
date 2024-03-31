@@ -1,6 +1,6 @@
 const form = document.querySelector('form');
 
-export function changeMargin(margin) {
+export default function changeMargin(margin) {
   const { top, right, bottom, left } = margin;
 
   form.style.marginTop = top;
