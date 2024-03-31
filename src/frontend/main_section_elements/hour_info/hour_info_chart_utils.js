@@ -54,10 +54,8 @@ function pickEnvironmentColor(environment, alpha) {
 }
 
 export function pickTempModeEnvironmentColor(ctx, alpha) {
-  // if (!ctx.parsed) debugger;
-
-  let y = ctx.p0?.parsed.y || ctx.parsed.y;
-  // if (!ctx.p0?.parsed.y && ctx.p0?.parsed.y !== 0) debugger;
+  let y = ctx.p0?.parsed.y;
+  if (isNaN(y)) y = ctx.parsed.y;
 
   switch (getTempMode()) {
     case '0':
