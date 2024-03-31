@@ -107,7 +107,7 @@ TODO:
   Docs:
 
     + update README file
-    - the power of small steps
+    + the power of small steps
 
 */
 

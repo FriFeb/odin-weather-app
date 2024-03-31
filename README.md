@@ -16,7 +16,17 @@ It was a fascinating journey and during all this time I learned:
 
 - what asynchronous JS is and how to work with it
 - how to grab desired information from an API
+- that you can do magic with the chart.js library
 - any complex task is not as difficult as you think, especially if you break it down into smaller pieces _(frontend page design seemed abnormally tough to me, but this principle helped me to overcome it XD)_
+- the power of small steps is incredible
+
+<p align="center">
+  <img src="image.png" style="max-width: 500px">
+
+  <p align="center">
+    <a href="https://edexec.co.uk/the-power-of-small-steps/">image reference</a>
+  </p>
+</p>
 
 ### Technologies
 
