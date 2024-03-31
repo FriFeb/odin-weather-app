@@ -6,6 +6,7 @@ import {
   commonChartOptions,
   pickTempModeEnvironmentColor,
 } from './hour_info_chart_utils';
+import setEnvironmentColors from '../../root';
 
 let chart;
 
@@ -219,8 +220,12 @@ function showLineChart(hours, hoursData) {
         onHover: (e, item) => {
           if (!item.length) return;
           const hourIndex = item[0].index;
-          showWeatherInfo(hours[hourIndex]);
-          showTime(hours[hourIndex].time);
+          const targetHour = hours[hourIndex];
+
+          setEnvironmentColors(targetHour);
+
+          showWeatherInfo(targetHour);
+          showTime(targetHour.time);
         },
       },
     },

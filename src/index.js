@@ -99,9 +99,9 @@ TODO:
       + make the chart responsive
       + remove axis borders
     + local date
+    + change environment based on temperature
     - uv index chart ...
     - animations to the main section ...
-    - change environment based on temperature ...
 
 
   Docs:

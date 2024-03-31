@@ -57,7 +57,8 @@ function pickEnvironmentColor(environment, alpha) {
 
 export function pickTempModeEnvironmentColor(ctx, alpha) {
   let y = ctx.p0?.parsed.y;
-  if (!Number.isFinite(y)) y = ctx.parsed.y;
+  if (!Number.isFinite(y)) y = ctx.parsed?.y;
+  if (!Number.isFinite(y)) y = ctx;
 
   switch (getTempMode()) {
     case '0':
