@@ -36,6 +36,9 @@ function showBarChart(hours, hoursData) {
 
       scales: {
         x: {
+          border: {
+            width: 0,
+          },
           grid: {
             display: false,
           },
@@ -47,6 +50,9 @@ function showBarChart(hours, hoursData) {
           },
         },
         y: {
+          border: {
+            width: 0,
+          },
           min: 0,
           suggestedMax: 100,
           grid: {
@@ -115,6 +121,9 @@ function showLineChart(hours, hoursData) {
 
       scales: {
         x: {
+          border: {
+            width: 0,
+          },
           grid: {
             display: false,
           },
@@ -126,6 +135,9 @@ function showLineChart(hours, hoursData) {
           },
         },
         y: {
+          border: {
+            width: 0,
+          },
           // Setting min value below the lowest hoursData value
           // to make sure that the temperature values below 0 C
           // do not overlap with ticks labels

@@ -97,12 +97,13 @@ TODO:
       + chart padding
       + pick proper chart size
       + make the chart responsive
+      + remove axis borders
     + local date
     - uv index chart ...
     - animations to the main section ...
     - change environment based on temperature ...
 
-    
+
   Docs:
 
     + update README file
