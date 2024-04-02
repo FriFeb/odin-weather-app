@@ -3,6 +3,7 @@ import {
   showCloudChart,
   showHumidityChart,
   showTempChart,
+  showUvIndexChart,
 } from './hour_info_chart';
 import {
   activateHourInfoModeElement,
@@ -35,8 +36,12 @@ export default function showHourInfo(
       break;
 
     case 'cloud':
-    default:
       showCloudChart(hours);
+      break;
+
+    case 'uv-index':
+    default:
+      showUvIndexChart(hours);
       break;
   }
 }

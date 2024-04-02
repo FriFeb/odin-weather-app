@@ -74,6 +74,26 @@ export function pickTempModeEnvironmentColor(ctx, alpha) {
   }
 }
 
+export function pickUvEnvironmentColor(ctx, alpha) {
+  let y = ctx.p0?.parsed.y;
+  if (!Number.isFinite(y)) y = ctx.parsed?.y;
+  if (!Number.isFinite(y)) y = ctx;
+
+  if (y <= 2) {
+    return `rgba(75, 192, 192, ${alpha})`;
+  }
+  if (y <= 5) {
+    return `rgba(255, 205, 86, ${alpha})`;
+  }
+  if (y <= 7) {
+    return `rgba(255, 159, 64, ${alpha})`;
+  }
+  if (y <= 10) {
+    return `rgba(255, 99, 132, ${alpha})`;
+  }
+  return `rgba(153, 102, 255, ${alpha})`;
+}
+
 export const commonChartOptions = {
   aspectRatio: 4,
   responsive: true,

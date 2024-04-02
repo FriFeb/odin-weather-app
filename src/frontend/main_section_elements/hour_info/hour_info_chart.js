@@ -5,10 +5,88 @@ import { getTempMode } from '../../../backend/temp_mode';
 import {
   commonChartOptions,
   pickTempModeEnvironmentColor,
+  pickUvEnvironmentColor,
 } from './hour_info_chart_utils';
 import setEnvironmentColors from '../../root';
 
 let chart;
+
+function showUvLineChart(hours, hoursData) {
+  chart = new Chart(document.getElementById('chart'), {
+    type: 'line',
+    data: {
+      labels: hours.map((hour) => hour.time.split(' ')[1]),
+      datasets: [
+        {
+          data: hoursData,
+          segment: {
+            borderColor: (context) => pickUvEnvironmentColor(context, 1),
+            backgroundColor: (context) => pickUvEnvironmentColor(context, 0.2),
+          },
+          spanGaps: true,
+        },
+      ],
+    },
+    options: {
+      ...commonChartOptions,
+      ...{
+        fill: true,
+        tension: 0.5,
+        pointRadius: 1,
+        pointHoverRadius: 15,
+        pointBackgroundColor: (context) => pickUvEnvironmentColor(context, 1),
+        pointBorderColor: (context) => pickUvEnvironmentColor(context, 1),
+
+        plugins: {
+          tooltip: {
+            enabled: false,
+          },
+        },
+
+        scales: {
+          x: {
+            border: {
+              width: 0,
+            },
+            grid: {
+              display: false,
+            },
+            ticks: {
+              font: {
+                size: 16,
+              },
+              padding: 10,
+            },
+          },
+          y: {
+            border: {
+              width: 0,
+            },
+            min: 0,
+            suggestedMax: 12,
+            grid: {
+              display: false,
+            },
+            ticks: {
+              display: false,
+            },
+          },
+        },
+
+        onHover: (e, item) => {
+          if (!item.length) return;
+          const hourIndex = item[0].index;
+          const targetHour = hours[hourIndex];
+
+          setEnvironmentColors(targetHour);
+
+          showWeatherInfo(targetHour);
+          showTime(targetHour.time);
+        },
+      },
+    },
+  });
+}
 
 function showBarChart(hours, hoursData) {
   chart = new Chart(document.getElementById('chart'), {
@@ -21,7 +99,6 @@ function showBarChart(hours, hoursData) {
         },
       ],
     },
-    // commonChartOptions should go before our custom options obj
     options: {
       ...commonChartOptions,
       ...{
@@ -93,7 +170,7 @@ function showBarChart(hours, hoursData) {
   });
 }
 
-function showLineChart(hours, hoursData) {
+function showTempLineChart(hours, hoursData) {
   chart = new Chart(document.getElementById('chart'), {
     type: 'line',
     data: {
@@ -247,7 +324,7 @@ export function showTempChart(hours, tempMode) {
   }
 
   if (chart) chart.destroy();
-  showLineChart(hours, hoursData);
+  showTempLineChart(hours, hoursData);
 }
 
 export function showHumidityChart(hours) {
@@ -262,4 +339,11 @@ export function showCloudChart(hours) {
 
   if (chart) chart.destroy();
   showBarChart(hours, hoursData);
+}
+
+export function showUvIndexChart(hours) {
+  const hoursData = hours.map((hour) => hour.uv);
+
+  if (chart) chart.destroy();
+  showUvLineChart(hours, hoursData);
 }

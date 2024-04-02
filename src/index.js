@@ -67,7 +67,6 @@ TODO:
 
     + enable eslint extension and refactor the code if needed
 
-
   Styling: 
 
     + location input 
@@ -100,10 +99,13 @@ TODO:
       + remove axis borders
     + local date
     + change environment based on temperature
-    - uv index chart ...
-    - animations to the main section ...
+    + uv index chart
+      + add a li elem to the hours info mode list
+      + add a new function to render uvIndex chart in hours_info_chart.js
+        + make function to colorize each section of the chart
+      + add the function to the showHourInfo switch statement
 
-
+      
   Docs:
 
     + update README file
@@ -111,4 +113,6 @@ TODO:
 
 */
 
-// need to avoid switch statements in future, it's really bad practice ...
+// it gets really hard to build up new app features
+// I should avoid such architectural mistakes in future
+// I didn't even imagine it would grow up so huge :)
